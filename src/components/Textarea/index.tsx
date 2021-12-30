@@ -27,7 +27,7 @@ const Textarea: FC<TextareaProps> = (props) => {
           {...field}
           name={name}
           id={name}
-          bg={useColorModeValue('gray.200', 'gray.700')}
+          bg={useColorModeValue('white', 'gray.700')}
           pl={10}
           _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}
           isInvalid={meta.touched && !!meta.error}

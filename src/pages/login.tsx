@@ -12,15 +12,15 @@ import { FcGoogle } from 'react-icons/fc';
 import { signInValidationSchema } from '../helpers/signInValidationSchema';
 import { LoginForm } from '../types/LoginForm';
 
-import NavigationButtons from '../components/NavigationButtons';
+import MenuButton from '../components/MenuButton';
 
 const Login: NextPage = () => {
 
   const submitButtonBg = useColorModeValue('orange.400', 'orange.500');
   const submitButtonHoverBg = useColorModeValue('orange.500', 'orange.400');
 
-  function handleSubmit(data: LoginForm) {
-    alert(data.email);
+  function handleSubmit({ email, password }: LoginForm) {
+    alert(`${email}, ${password}`);
   }
 
   return (
@@ -41,15 +41,14 @@ const Login: NextPage = () => {
         <Box
           as='section'
           flex={{ base: 1, lg: 7 }}
-          borderRight={'1px solid'}
-          borderColor={'gray.300'}
         >
           <Image
-            src='/images/bg-signin.jpg'
-            alt='Group of people brainstorming'
+            src='/images/discussion-board.svg'
+            alt='Illustration of a man near a online discussion board'
             boxSize='full'
-            loading='eager'
-            maxH={{ base: '50vh', lg: 'full' }}
+            bg={'white'}
+            p={4}
+            maxH={{ base: '50vh', lg: '100vh' }}
           />
         </Box>
 
@@ -57,16 +56,15 @@ const Login: NextPage = () => {
         <Flex
           as='section'
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('white', 'transparent')}
+          bg={useColorModeValue('gray.200', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
-          pb={4}
+          pb={8}
           gap={{ base: 12, lg: 0 }}
         >
 
-          { /* Toggle Theme Button */}
-          <NavigationButtons />
+          <MenuButton />
 
           <Box>
             <VStack spacing={{ base: 6, sm: 7, lg: 8 }} mx='auto' w={{ base: '90%', lg: '90%' }}>

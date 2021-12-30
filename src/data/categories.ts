@@ -1,6 +1,1 @@
-export const categories = [
-  {
-    name: 'HTML',
-    icon: '',
-  }
-]
+export const categories = ['HTML', 'CSS', 'JavaScript', 'OFF'];

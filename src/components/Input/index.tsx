@@ -15,46 +15,46 @@ const Input: FC<TInput> = (props) => {
     const [field, meta] = useField(props);
 
     return (
-        <>
-            <InputGroup>
+      <>
+        <InputGroup>
 
-                <InputLeftElement>
-                    {icon === 'email' && <EmailIcon />}
-                    {icon === 'password' && <LockIcon />}
-                    {icon === 'info' && <InfoIcon />}
-                    {icon === 'search' && <SearchIcon />}
-                </InputLeftElement>
+          <InputLeftElement>
+            {icon === 'email' && <EmailIcon />}
+            {icon === 'password' && <LockIcon />}
+            {icon === 'info' && <InfoIcon />}
+            {icon === 'search' && <SearchIcon />}
+          </InputLeftElement>
 
-                {
-                    type === 'password' &&
-                    <InputRightElement
-                        cursor={'pointer'}
-                        title='Toggle Password Visibility'
-                        onClick={() => { setIsPasswordVisible(!isPasswordVisible); }}
-                    >
-                        {isPasswordVisible ? <ViewIcon /> : <ViewOffIcon />}
-                    </InputRightElement>
-                }
+          {
+            type === 'password' &&
+            <InputRightElement
+              cursor={'pointer'}
+              title='Toggle Password Visibility'
+              onClick={() => { setIsPasswordVisible(!isPasswordVisible); }}
+            >
+              {isPasswordVisible ? <ViewIcon /> : <ViewOffIcon />}
+            </InputRightElement>
+          }
 
-                <ChakraInput
-                    {...field}
-                    bg={useColorModeValue('gray.200', 'gray.700')}
-                    id={name}
-                    name={name}
-                    _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}
-                    isInvalid={meta.touched && !!meta.error}
-                    placeholder={placeholder}
-                    type={(type !== 'password') ? type : isPasswordVisible ? 'text' : 'password'}
-                    autoComplete='off'
-                />
-            </InputGroup>
+          <ChakraInput
+            {...field}
+            bg={useColorModeValue('white', 'gray.700')}
+            id={name}
+            name={name}
+            _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}
+            isInvalid={meta.touched && !!meta.error}
+            placeholder={placeholder}
+            type={(type !== 'password') ? type : isPasswordVisible ? 'text' : 'password'}
+            autoComplete='off'
+          />
+        </InputGroup>
 
-            <ErrorMessage
-                name={field.name}
-                component={"p"}
-                className='input-error'
-            />
-        </>
+        <ErrorMessage
+          name={field.name}
+          component={"p"}
+          className='input-error'
+        />
+      </>
     );
 };
 

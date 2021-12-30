@@ -3,26 +3,23 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
 
+import MenuButton from '../components/MenuButton';
 import Input from '../components/Input';
 import { Formik, Form } from 'formik';
 import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, useColorMode, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
 
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { FcGoogle } from 'react-icons/fc';
 
 import { SignUpForm } from '../types/SignUpForm';
 import { signUpValidationSchema } from '../helpers/signUpValidationSchema';
-import NavigationButtons from '../components/NavigationButtons';
 
 const SignUp: NextPage = () => {
-
-  const { toggleColorMode, colorMode } = useColorMode();
 
   const submitButtonBg = useColorModeValue('orange.400', 'orange.500');
   const submitButtonHoverBg = useColorModeValue('orange.500', 'orange.400');
 
-  function handleSubmit(data: SignUpForm) {
-    alert(data.email);
+  function handleSubmit({ email, password, confirmPassword }: SignUpForm) {
+    alert(`${email}, ${password}, ${confirmPassword}`);
   }
 
   return (
@@ -43,14 +40,13 @@ const SignUp: NextPage = () => {
         <Box
           as='section'
           flex={{ base: 1, lg: 6 }}
-          borderLeft={'1px solid'}
-          borderColor={'gray.300'}
+          bg={'white'}
         >
           <Image
-            src='/images/bg-signup.jpg'
-            alt='Group of people brainstorming'
+            src='/images/join.svg'
+            alt='An illustration of '
             boxSize='full'
-            loading='eager'
+            p={4}
             maxH={{ base: '50vh', lg: 'full' }}
           />
         </Box>
@@ -60,25 +56,26 @@ const SignUp: NextPage = () => {
           as='section'
           order={{ base: 10, lg: -1 }}
           flex={{ base: 1, lg: 5 }}
-          position='relative'
-          bg={useColorModeValue('white', 'transparent')}
+          bg={useColorModeValue('gray.200', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
-          pb={4}
+          pb={{ base: 8, lg: 4 }}
           gap={{ base: 12, lg: 0 }}
         >
 
-          { /* Toggle Theme Button */}
-          <NavigationButtons />
+          <MenuButton />
 
           <Box>
             <VStack spacing={{ base: 6, sm: 7, lg: 8 }} mx='auto' w={{ base: '90%', lg: '90%' }}>
               <Heading
                 as='h1'
+                textAlign={'center'}
                 size={useBreakpointValue({ base: 'lg', sm: 'xl', lg: 'lg', xl: 'xl' })}
               >
-                Create Account
+                Create an Account and
+                <br />
+                Join our community!
               </Heading>
 
               <Box w='90%' maxW='30rem'>

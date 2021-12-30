@@ -1,28 +1,25 @@
 import React from 'react';
 import { NextPage } from 'next';
-import NextLink from 'next/link';
 import Head from 'next/head';
 
 import Input from '../components/Input';
 import { Formik, Form } from 'formik';
-import { Image, Box, Button, FormControl, Heading, useColorModeValue, VStack, useColorMode, Flex, useBreakpointValue, Grid, FormLabel, Text } from '@chakra-ui/react';
-
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { Image, Box, Button, FormControl, Heading, useColorModeValue, VStack, Flex, useBreakpointValue, Grid, FormLabel, Text } from '@chakra-ui/react';
 
 import Textarea from '../components/Textarea';
 import { createPostValidationSchema } from '../helpers/createPostValidationSchema';
 import { createPostForm } from '../types/CreatePostForm';
-import NavigationButtons from '../components/NavigationButtons';
+import MenuButton from '../components/MenuButton';
+import Select from '../components/Select';
+import { categories } from '../data/categories';
 
 const Login: NextPage = () => {
-
-  const { toggleColorMode, colorMode } = useColorMode();
 
   const submitButtonBg = useColorModeValue('orange.400', 'orange.500');
   const submitButtonHoverBg = useColorModeValue('orange.500', 'orange.400');
 
-  function handleSubmit(data: createPostForm) {
-    alert(`${data.title}, ${data.content}`);
+  function handleSubmit({ title, content, category }: createPostForm) {
+    alert(`${title}, ${content}, ${category}`);
   }
 
   return (
@@ -43,15 +40,15 @@ const Login: NextPage = () => {
         <Box
           as='section'
           flex={{ base: 1, lg: 7 }}
-          borderRight={'1px solid'}
-          borderColor={'gray.300'}
+          bg='white'
         >
           <Image
-            src='/images/c1.jpg'
+            src='/images/new-post.svg'
             alt='Group of people brainstorming'
+            bg='white'
+            p={4}
             boxSize='full'
-            loading='eager'
-            maxH={{ base: '50vh', lg: 'full' }}
+            maxH={{ base: '50vh', lg: '100vh' }}
           />
         </Box>
 
@@ -59,47 +56,64 @@ const Login: NextPage = () => {
         <Flex
           as='section'
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('white', 'transparent')}
+          bg={useColorModeValue('gray.200', 'transparent')}
           direction={'column'}
-          justifyContent={'space-between'}
-          py={1}
-          pb={4}
-          gap={{ base: 12, lg: 0 }}
+          gap={{ base: 10, lg: 20 }}
+          pb={10}
         >
 
-          <NavigationButtons />
+          <MenuButton />
 
-          <Grid h='full' placeItems='center'>
-            <VStack spacing={{ base: 6, sm: 7, lg: 8 }} mx='auto' w={{ base: '90%', lg: '90%' }}>
+          <VStack spacing={10}>
               <Heading
                 as='h1'
                 size={useBreakpointValue({ base: 'lg', sm: 'xl', lg: 'lg', xl: 'xl' })}
               >
                 Start a Discussion
               </Heading>
+
               <Box w='90%' maxW='30rem'>
                 <Formik
-                  initialValues={{ title: '', content: '' }}
+                initialValues={{ title: '', category: '', content: '' }}
                   validationSchema={createPostValidationSchema}
                   onSubmit={handleSubmit}
                 >
                   {
                     () => (
                       <Form>
-                        <FormControl>
-                          <FormLabel htmlFor='title'>
-                            Title {" "}
-                            <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
-                          </FormLabel>
-                          <Input name='title' type='text' placeholder='Post Title' icon='info' />
-                        </FormControl>
-                        <FormControl mt={3}>
-                          <FormLabel htmlFor='content'>
-                            Content {" "}
-                            <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
-                          </FormLabel>
-                          <Textarea name='content' placeholder='Post Content' />
-                        </FormControl>
+                        <VStack spacing={3}>
+                          <FormControl>
+                            {/* <FormLabel htmlFor='title'>
+                              Title {" "}
+                              <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                            </FormLabel> */}
+                            <Input name='title' type='text' placeholder='Post Title' icon='info' />
+                          </FormControl>
+
+                          <FormControl>
+                            {/*  <FormLabel htmlFor='category'>
+                              Category {" "}
+                              <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                            </FormLabel> */}
+                            <Select name='category'>
+                              <option value="">Select a category</option>
+                              {
+                                categories.map(category =>
+                                  <option key={category} value={category}>{category}</option>
+                                )
+                              }
+                            </Select>
+                          </FormControl>
+
+                          <FormControl>
+                            {/* <FormLabel htmlFor='content'>
+                              Content {" "}
+                              <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                            </FormLabel> */}
+                            <Textarea name='content' placeholder='Post Content' />
+                          </FormControl>
+                        </VStack>
+
                         <Button
                           aria-label='Submit Form'
                           w='full'
@@ -119,8 +133,7 @@ const Login: NextPage = () => {
                   }
                 </Formik>
               </Box>
-            </VStack>
-          </Grid>
+          </VStack>
         </Flex>
       </Flex>
     </Flex >
