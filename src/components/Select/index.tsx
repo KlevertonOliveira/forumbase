@@ -14,7 +14,7 @@ const Select: FC<SelectProps> = (props) => {
   return (
     <>
       <ChakraSelect
-        bg={useColorModeValue('white', 'gray.700')}
+        bg={useColorModeValue('white', 'gray.900')}
         {...field}
         id={props.name}
         {...props}

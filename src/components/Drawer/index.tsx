@@ -1,70 +1,140 @@
-import { AddIcon, InfoIcon } from '@chakra-ui/icons';
-import { useDisclosure, Button, Drawer as ChakraDrawer, Input, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Stack, Box, FormControl, FormLabel, InputGroup, InputLeftElement, Select, Textarea, DrawerFooter } from '@chakra-ui/react';
-import { FC, useRef } from "react";
+import { FC } from "react";
+import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast } from '@chakra-ui/react';
+import { Formik, Form } from 'formik';
+import { RiFileAddFill } from 'react-icons/ri';
+import { categories } from '../../data/categories';
+import { createPostValidationSchema } from '../../helpers/createPostValidationSchema';
+import { createPostForm } from '../../types/CreatePostForm';
+import Input from '../Input';
+import Select from '../Select';
+import Textarea from '../Textarea';
 
 const Drawer: FC = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const firstField = useRef();
+
+  function handleSubmit({ title, content, category }: createPostForm) {
+    console.log(`${title}, ${content}, ${category}`);
+    toast({
+      title: 'Success!',
+      description: "Your post was successfully created!",
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
+    onClose();
+  }
+
+  /* Special styles (for light/dark mode) */
+
+  const ctaButtonBg = useColorModeValue('orange.400', 'orange.500');
+  const ctaButtonHover = useColorModeValue("orange.500", "orange.400");
+
 
   return (
     <>
-      <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}>
-        Create Post
+      <Button
+        bg={ctaButtonBg}
+        _hover={{ backgroundColor: ctaButtonHover }}
+        _active={{ backgroundColor: ctaButtonBg }}
+        color='white'
+        rounded={{ base: 'full', sm: 'lg' }}
+        title='Create Post'
+        h={'min-content'}
+        w={'min-content'}
+        py={{ base: 3, sm: 3 }}
+        px={{ base: 3, md: 5 }}
+        disabled={false}
+        onClick={onOpen}
+      >
+        <Icon as={RiFileAddFill} h={6} w={6} mr={{ base: 0, sm: 1 }} />
+        <Box display={{ base: 'none', sm: 'inline' }}>
+          Create Post
+        </Box>
       </Button>
+
       <ChakraDrawer
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
         size='lg'
       >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth='1px'>
-            Start a new discussion
-          </DrawerHeader>
+        <Formik
+          initialValues={{ title: '', category: '', content: '' }}
+          validationSchema={createPostValidationSchema}
+          onSubmit={handleSubmit}
+        >
+          {
+            () => (
+              <Form>
+                <DrawerOverlay />
 
-          <DrawerBody>
-            <Stack spacing='24px'>
-              <Box>
-                <FormControl>
-                  <FormLabel htmlFor='username'>Post Title</FormLabel>
-                  <InputGroup>
-                    <InputLeftElement>
-                      <InfoIcon />
-                    </InputLeftElement>
-                    <Input
-                      varint='filled'
-                      id='username'
-                      placeholder='Please enter a post title'
-                      _placeholder={{ color: 'gray.800' }}
-                    />
-                  </InputGroup>
-                </FormControl>
-              </Box>
+                <DrawerContent>
 
-              <Box>
-                <FormLabel htmlFor='owner'>Category</FormLabel>
-                <Select id='owner' defaultValue='segun' variant='filled'>
-                  <option value='segun'>HTML</option>
-                  <option value='kola'>CSS</option>
-                </Select>
-              </Box>
+                  <DrawerCloseButton />
 
-              <Box>
-                <FormLabel htmlFor='desc'>Content</FormLabel>
-                <Textarea id='desc' bg={'gray.50'} />
-              </Box>
-            </Stack>
-          </DrawerBody>
+                  <DrawerHeader borderBottomWidth='1px'>
+                    Start a new discussion
+                  </DrawerHeader>
 
-          <DrawerFooter borderTopWidth='1px'>
-            <Button variant='outline' mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme='blue'>Submit</Button>
-          </DrawerFooter>
-        </DrawerContent>
+                  <DrawerBody>
+
+                    <VStack spacing={3}>
+
+                      <FormControl>
+                        <FormLabel htmlFor='title'>
+                          Title
+                          <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                        </FormLabel>
+                        <Input name='title' type='text' placeholder='Post Title' icon='info' />
+                      </FormControl>
+
+                      <FormControl>
+                        <FormLabel htmlFor='category'>
+                          Category
+                          <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                        </FormLabel>
+                        <Select name='category'>
+                          <option value="">Select a category</option>
+                          {
+                            categories.map(category =>
+                              <option key={category} value={category}>{category}</option>
+                            )
+                          }
+                        </Select>
+                      </FormControl>
+
+                      <FormControl>
+                        <FormLabel htmlFor='content'>
+                          Content
+                          <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
+                        </FormLabel>
+                        <Textarea name='content' placeholder='Post Content' />
+                      </FormControl>
+
+                    </VStack>
+                  </DrawerBody>
+
+                  <DrawerFooter borderTopWidth='1px'>
+                    <Button variant='outline' mr={3} onClick={onClose}>
+                      Cancel
+                    </Button>
+                    <Button
+                      type='submit'
+                      bg={ctaButtonBg}
+                      _hover={{ backgroundColor: ctaButtonHover }}
+                      _active={{ backgroundColor: ctaButtonBg }}
+                      color='white'
+                    >
+                      Submit
+                    </Button>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Form>
+            )
+          }
+        </Formik>
+
       </ChakraDrawer>
     </>
   );

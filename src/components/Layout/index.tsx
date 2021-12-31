@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import {ReactNode} from 'react';
 import Navbar from '../Navbar';
 
@@ -16,7 +16,7 @@ const Layout = ({children}:{children:ReactNode}) => {
                 as='main'
                 flex={1}
             >
-                <Box flex={1}>
+                <Box flex={1} bg={useColorModeValue('#E9F2DA', 'transparent')}>
                     {children}
                 </Box>
             </Flex>

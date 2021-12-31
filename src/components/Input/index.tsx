@@ -22,7 +22,6 @@ const Input: FC<TInput> = (props) => {
             {icon === 'email' && <EmailIcon />}
             {icon === 'password' && <LockIcon />}
             {icon === 'info' && <InfoIcon />}
-            {icon === 'search' && <SearchIcon />}
           </InputLeftElement>
 
           {
@@ -38,7 +37,7 @@ const Input: FC<TInput> = (props) => {
 
           <ChakraInput
             {...field}
-            bg={useColorModeValue('white', 'gray.700')}
+            bg={useColorModeValue('white', 'gray.900')}
             id={name}
             name={name}
             _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}
