@@ -44,7 +44,7 @@ const SignUp: NextPage = () => {
         >
           <Image
             src='/images/join.svg'
-            alt='An illustration of '
+            alt='An illustration of animated characters -cumprimentando- each other.'
             boxSize='full'
             p={4}
             maxH={{ base: '50vh', lg: 'full' }}
@@ -56,7 +56,7 @@ const SignUp: NextPage = () => {
           as='section'
           order={{ base: 10, lg: -1 }}
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('gray.200', 'transparent')}
+          bg={useColorModeValue('mainGray', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}

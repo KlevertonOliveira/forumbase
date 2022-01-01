@@ -37,7 +37,7 @@ const Input: FC<TInput> = (props) => {
 
           <ChakraInput
             {...field}
-            bg={useColorModeValue('white', 'gray.900')}
+            bg={useColorModeValue('white', 'gray.700')}
             id={name}
             name={name}
             _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}

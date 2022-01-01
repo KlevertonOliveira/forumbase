@@ -4,8 +4,8 @@ import Drawer from '../components/Drawer';
 import Layout from '../components/Layout';
 import { Container, Flex, Input, InputGroup, InputLeftElement, Select, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-import { categories } from '../data/categories';
 import Table from '../components/Table';
+import { categories } from '../data/categories';
 
 const Home: NextPage = () => {
   return (
@@ -47,11 +47,11 @@ const Home: NextPage = () => {
             gap={3}>
 
             <Text fontWeight={'semibold'}>Category: </Text>
-            <Select id='category' name='category' variant='filled'>
-              <option value="all">All Topics</option>
+            <Select id='category' name='category' bg={useColorModeValue('white', 'gray.700')}>
+              <option value="all">ALL</option>
               {
                 categories.map(category =>
-                  <option key={category} value={category}>{category}</option>
+                  <option key={category.title} value={category.title}>{category.title}</option>
                 )
               }
             </Select>

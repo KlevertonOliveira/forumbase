@@ -16,7 +16,7 @@ const Layout = ({children}:{children:ReactNode}) => {
                 as='main'
                 flex={1}
             >
-                <Box flex={1} bg={useColorModeValue('#E9F2DA', 'transparent')}>
+                <Box flex={1} bg={useColorModeValue('mainGray', 'transparent')}>
                     {children}
                 </Box>
             </Flex>

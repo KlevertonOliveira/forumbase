@@ -56,7 +56,7 @@ const Login: NextPage = () => {
         <Flex
           as='section'
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('gray.200', 'transparent')}
+          bg={useColorModeValue('mainGray', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}

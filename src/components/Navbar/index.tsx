@@ -20,9 +20,9 @@ const Navbar = () => {
     const router = useRouter();
 
     /* Special styles for (light/dark mode) */
-    const menuButtonBg = useColorModeValue('#E9F2DA', 'transparent');
     const menuButtonBgHover = useColorModeValue('gray.50', 'gray.800');
-    const menuButtonTextColor = useColorModeValue('gray.600', 'white');
+    const menuButtonTextColor = useColorModeValue('gray.900', 'white');
+    const menuButtonBorder = useColorModeValue('mainGray', 'gray.600');
 
     return (
         <Box
@@ -81,11 +81,10 @@ const Navbar = () => {
                                         icon={<HamburgerIcon />}
                                         variant='outline'
                                         rounded='full'
-                                        bg={menuButtonBg}
                                         color={menuButtonTextColor}
                                         _hover={{ backgroundColor: menuButtonBgHover }}
-                                        _active={{ backgroundColor: menuButtonBg }}
-                                    />
+                                        border='2px solid'
+                                        borderColor={menuButtonBorder} />
                                 )
                         }
 

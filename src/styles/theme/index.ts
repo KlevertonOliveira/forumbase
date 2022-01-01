@@ -74,6 +74,10 @@ const theme = extendTheme({
             }
         }
     },
+
+    colors:{
+      mainGray: '#E9F2DA',
+    },
     
     fonts:{
         heading: `Inter, ${base.fonts.heading}`,

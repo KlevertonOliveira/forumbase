@@ -2,12 +2,12 @@ import { FC } from "react";
 import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { RiFileAddFill } from 'react-icons/ri';
-import { categories } from '../../data/categories';
 import { createPostValidationSchema } from '../../helpers/createPostValidationSchema';
 import { createPostForm } from '../../types/CreatePostForm';
 import Input from '../Input';
 import Select from '../Select';
 import Textarea from '../Textarea';
+import { categories } from '../../data/categories';
 
 const Drawer: FC = () => {
   const toast = useToast();
@@ -29,7 +29,8 @@ const Drawer: FC = () => {
 
   const ctaButtonBg = useColorModeValue('orange.400', 'orange.500');
   const ctaButtonHover = useColorModeValue("orange.500", "orange.400");
-
+  const contentBodyBg = useColorModeValue('#E9F2DA', 'gray.900');
+  const cancelButtonBg = useColorModeValue('mainGray', 'gray.600');
 
   return (
     <>
@@ -43,7 +44,7 @@ const Drawer: FC = () => {
         h={'min-content'}
         w={'min-content'}
         py={{ base: 3, sm: 3 }}
-        px={{ base: 3, md: 5 }}
+        px={{ base: 3, md: 7 }}
         disabled={false}
         onClick={onOpen}
       >
@@ -77,7 +78,7 @@ const Drawer: FC = () => {
                     Start a new discussion
                   </DrawerHeader>
 
-                  <DrawerBody>
+                  <DrawerBody bg={contentBodyBg}>
 
                     <VStack spacing={3}>
 
@@ -98,7 +99,7 @@ const Drawer: FC = () => {
                           <option value="">Select a category</option>
                           {
                             categories.map(category =>
-                              <option key={category} value={category}>{category}</option>
+                              <option key={category.title} value={category.title}>{category.title}</option>
                             )
                           }
                         </Select>
@@ -116,7 +117,7 @@ const Drawer: FC = () => {
                   </DrawerBody>
 
                   <DrawerFooter borderTopWidth='1px'>
-                    <Button variant='outline' mr={3} onClick={onClose}>
+                    <Button mr={3} bg={cancelButtonBg} onClick={onClose}>
                       Cancel
                     </Button>
                     <Button
