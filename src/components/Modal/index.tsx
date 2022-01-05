@@ -1,5 +1,5 @@
+import { FC } from 'react';
 import { Button, Modal as ChakraModal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, Text } from '@chakra-ui/react';
-import React from 'react'
 
 type ModalProps = {
     title: string;
@@ -8,7 +8,7 @@ type ModalProps = {
     onClose: () => void;
 }
 
-const Modal:React.FC<ModalProps> = ({title, content, isOpen, onClose}) => {
+const Modal: FC<ModalProps> = ({ title, content, isOpen, onClose }) => {
 
   return (
     <>

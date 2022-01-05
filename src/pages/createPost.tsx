@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 import { Image, Box, Button, FormControl, Heading, useColorModeValue, VStack, Flex, useBreakpointValue, Grid, FormLabel, Text } from '@chakra-ui/react';
 
 import Textarea from '../components/Textarea';
-import { createPostValidationSchema } from '../helpers/createPostValidationSchema';
+import { createPostValidationSchema } from '../helpers/validation/createPostValidationSchema';
 import { createPostForm } from '../types/CreatePostForm';
 import MenuButton from '../components/MenuButton';
 import Select from '../components/Select';
@@ -99,7 +99,7 @@ const Login: NextPage = () => {
                               <option value="">Select a category</option>
                               {
                                 categories.map(category =>
-                                  <option key={category} value={category}>{category}</option>
+                                  <option key={category.title} value={category.title}>{category.title}</option>
                                 )
                               }
                             </Select>

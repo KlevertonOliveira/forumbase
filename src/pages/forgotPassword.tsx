@@ -4,23 +4,21 @@ import NextLink from 'next/link';
 import Head from 'next/head';
 
 import Input from '../components/Input';
+import MenuButton from '../components/MenuButton';
 import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 
-import { FcGoogle } from 'react-icons/fc';
+import { ForgotPasswordForm } from '../types/ForgotPasswordForm';
+import { forgotPasswordValidationSchema } from '../helpers/validation/forgotPasswordValidationSchema';
 
-import { signInValidationSchema } from '../helpers/validation/signInValidationSchema';
-import { LoginForm } from '../types/LoginForm';
 
-import MenuButton from '../components/MenuButton';
-
-const Login: NextPage = () => {
+const ForgotPassword: NextPage = () => {
 
   const ctaButton = useColorModeValue('orange.400', 'orange.500');
   const ctaButtonHover = useColorModeValue('orange.500', 'orange.400');
 
-  function handleSubmit({ email, password }: LoginForm) {
-    alert(`${email}, ${password}`);
+  function handleSubmit({ email }: ForgotPasswordForm) {
+    alert(`${email}`);
   }
 
   return (
@@ -43,8 +41,8 @@ const Login: NextPage = () => {
           flex={{ base: 1, lg: 7 }}
         >
           <Image
-            src='/images/discussion-board.svg'
-            alt='Illustration of a man near a online discussion board'
+            src='/images/forgot-password.svg'
+            alt='Illustration of a man looking at a board with an unknown password'
             boxSize='full'
             bg={'white'}
             p={4}
@@ -74,31 +72,21 @@ const Login: NextPage = () => {
                 as='h1'
                 size={useBreakpointValue({ base: 'lg', sm: 'xl', lg: 'lg', xl: 'xl' })}
               >
-                Log in to Your Account
+                Redefine Password
               </Heading>
 
               <Box w='90%' maxW='30rem'>
                 <Formik
                   initialValues={{ email: '', password: '' }}
-                  validationSchema={signInValidationSchema}
+                  validationSchema={forgotPasswordValidationSchema}
                   onSubmit={handleSubmit}
                 >
                   {
                     () => (
                       <Form>
                         <FormControl>
-                          <Input name='email' type='email' placeholder='Email' icon='email' />
+                          <Input name='email' type='email' placeholder='Your Email' icon='email' />
                         </FormControl>
-
-                        <FormControl mt={3}>
-                          <Input name='password' type='password' placeholder='Password' icon='password' />
-                        </FormControl>
-
-                        <Flex justifyContent={'flex-end'} mt={3}>
-                          <NextLink href='/forgotPassword' passHref>
-                            <Link>Forgot password?</Link>
-                          </NextLink>
-                        </Flex>
 
                         <Button
                           aria-label='Submit Form'
@@ -112,7 +100,7 @@ const Login: NextPage = () => {
                           }}
                           type='submit'
                         >
-                          Sign In
+                          Reset Password
                         </Button>
                       </Form>
                     )
@@ -120,42 +108,20 @@ const Login: NextPage = () => {
                 </Formik>
               </Box>
 
-              <Text fontSize='sm' fontWeight='medium'>
-                Don&apos;t have an account? {" "}
-                <NextLink href='/signup' passHref>
-                  <Link
-                  >
-                    Sign Up
-                  </Link>
-                </NextLink>
-              </Text>
             </VStack>
           </Box>
 
-          <HStack justifyContent='center' spacing={4}>
-            <Text>
-              Or
-            </Text>
-            <Button
-              aria-label='Sign in with Google account'
-              bg='black'
-              _hover={{
-                backgroundColor: '#191919',
-                transitionProperty: 'backgroundColor',
-                msTransitionDuration: '200',
-                transitionTimingFunction: 'ease-in'
-              }}
-              type='button'
-            >
-              <FcGoogle />
-              <Text ml='2' color='white'>Sign in with Google</Text>
-            </Button>
-          </HStack>
-
+          <Flex justifyContent={'flex-end'} mr={3}>
+            <NextLink href='/login' passHref>
+              <Link>
+                Return to Login
+              </Link>
+            </NextLink>
+          </Flex>
         </Flex>
       </Flex>
     </Flex >
   );
 };
 
-export default Login;
+export default ForgotPassword;

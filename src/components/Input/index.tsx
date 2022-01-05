@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import { EmailIcon, InfoIcon, LockIcon, SearchIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { InputGroup, InputLeftElement, InputRightElement, Input as ChakraInput, useColorModeValue, Text } from '@chakra-ui/react';
+import { EmailIcon, InfoIcon, LockIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { InputGroup, InputLeftElement, InputRightElement, Input as ChakraInput } from '@chakra-ui/react';
 
 import { TInput } from '../../types/TInput';
 import { useField, ErrorMessage } from 'formik';
@@ -37,10 +37,8 @@ const Input: FC<TInput> = (props) => {
 
           <ChakraInput
             {...field}
-            bg={useColorModeValue('white', 'gray.700')}
             id={name}
             name={name}
-            _placeholder={{ color: useColorModeValue('gray.900', 'gray.200') }}
             isInvalid={meta.touched && !!meta.error}
             placeholder={placeholder}
             type={(type !== 'password') ? type : isPasswordVisible ? 'text' : 'password'}

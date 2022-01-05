@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { categories } from '../data/categories';
+import { categories } from '../../data/categories';
 
 export const createPostValidationSchema = Yup.object().shape({
     title: Yup.string()
@@ -8,7 +8,7 @@ export const createPostValidationSchema = Yup.object().shape({
         .max(50, 'Title must not exceed 50 characters'),
 
     category: Yup.string()
-        .oneOf(categories, 'Invalid Category')
+        .oneOf(categories.map(category=>category.title), 'Invalid Category')
         .required('Category is required'),
 
     content: Yup.string()

@@ -3,7 +3,12 @@ import { FC } from "react";
 import { Flex, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Text, useColorModeValue, Image, Center } from '@chakra-ui/react';
 import { categories } from '../../data/categories';
 
-const Table: FC = () => {
+type TableProps = {
+  currentSelectedCategory: string;
+  setCurrentSelectedCategory: (category: string) => void;
+};
+
+const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCategory }) => {
 
   let tableCategories = [...categories];
   tableCategories.unshift(
@@ -24,29 +29,39 @@ const Table: FC = () => {
     <ChakraTable variant='simple' maxW={'max-content'} size={'md'}>
 
       <Thead>
-        <Center>
-          <Th>Categories</Th>
-        </Center>
+        <Tr>
+          <Th textAlign={'center'}>Categories</Th>
+        </Tr>
       </Thead>
 
       <Tbody>
         {
-          tableCategories.map(category => (
-            <Tr
-              key={category.title}
-              bg={categoriesBgColor}
-              color={categoriesTextColor}
-              _hover={{ backgroundColor: categoriesBgColorHover }}
-              cursor={'pointer'}
-            >
-              <Td borderBottom='1px solid' borderColor={TrBorderColor}>
-                <Flex gap={3} alignItems={'center'}>
-                  <Image src={category.iconPath} alt={category.alt} />
-                  <Text fontWeight={'semibold'}>{category.title}</Text>
-                </Flex>
-              </Td>
-            </Tr>
-          ))
+          tableCategories.map(category => {
+            const isCurrentSelectedCategory = (currentSelectedCategory === category.title);
+
+            return (
+              <Tr
+                key={category.title}
+                bg={isCurrentSelectedCategory ? categoriesBgColorHover : categoriesBgColor}
+                color={categoriesTextColor}
+                cursor={'pointer'}
+                _hover={{ backgroundColor: isCurrentSelectedCategory ? 'none' : categoriesBgColorHover }}
+                transition="background-color 200ms ease-in-out"
+              >
+                <Td
+                  borderBottom='1px solid'
+                  borderColor={TrBorderColor}
+                  onClick={() => { setCurrentSelectedCategory(category.title); }}
+                >
+                  <Flex gap={3} alignItems={'center'}>
+                    <Image src={category.iconPath} alt={category.alt} />
+                    <Text fontWeight={'semibold'}>{category.title}</Text>
+                  </Flex>
+                </Td>
+              </Tr>
+            );
+          }
+          )
         }
       </Tbody>
 

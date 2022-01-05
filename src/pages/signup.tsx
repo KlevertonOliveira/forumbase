@@ -11,7 +11,8 @@ import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue
 import { FcGoogle } from 'react-icons/fc';
 
 import { SignUpForm } from '../types/SignUpForm';
-import { signUpValidationSchema } from '../helpers/signUpValidationSchema';
+import { signUpValidationSchema } from '../helpers/validation/signUpValidationSchema';
+import MenuButtonTwo from '../components/MenuButton';
 
 const SignUp: NextPage = () => {
 
@@ -56,7 +57,7 @@ const SignUp: NextPage = () => {
           as='section'
           order={{ base: 10, lg: -1 }}
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('mainGray', 'transparent')}
+          bg={useColorModeValue('mainGray.100', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
@@ -64,7 +65,9 @@ const SignUp: NextPage = () => {
           gap={{ base: 12, lg: 0 }}
         >
 
-          <MenuButton />
+          <Flex justifyContent={`flex-end`} my={1} mx={2}>
+            <MenuButtonTwo />
+          </Flex>
 
           <Box>
             <VStack spacing={{ base: 6, sm: 7, lg: 8 }} mx='auto' w={{ base: '90%', lg: '90%' }}>
@@ -124,15 +127,7 @@ const SignUp: NextPage = () => {
               <Text fontSize='sm' fontWeight='medium'>
                 Already have an account? {" "}
                 <NextLink href='/login' passHref>
-                  <Link
-                    color='orange.500'
-                    _hover={{
-                      color: useColorModeValue("orange.600", "orange.400"),
-                    }}
-                    fontWeight={'semibold'}
-                  >
-                    Sign In
-                  </Link>
+                  <Link>Sign In</Link>
                 </NextLink>
               </Text>
             </VStack>

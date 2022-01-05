@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Select as ChakraSelect, useColorModeValue } from '@chakra-ui/react';
+import { Select as ChakraSelect } from '@chakra-ui/react';
 import { ErrorMessage, useField } from 'formik';
 
 type SelectProps = {
@@ -14,10 +14,9 @@ const Select: FC<SelectProps> = (props) => {
   return (
     <>
       <ChakraSelect
-        bg={useColorModeValue('white', 'gray.700')}
         {...field}
-        id={props.name}
         {...props}
+        id={props.name}
         isInvalid={meta.touched && !!meta.error}
       />
       <ErrorMessage

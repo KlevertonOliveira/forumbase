@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { RiFileAddFill } from 'react-icons/ri';
-import { createPostValidationSchema } from '../../helpers/createPostValidationSchema';
+import { createPostValidationSchema } from '../../helpers/validation/createPostValidationSchema';
 import { createPostForm } from '../../types/CreatePostForm';
 import Input from '../Input';
 import Select from '../Select';
@@ -27,18 +27,12 @@ const Drawer: FC = () => {
 
   /* Special styles (for light/dark mode) */
 
-  const ctaButtonBg = useColorModeValue('orange.400', 'orange.500');
-  const ctaButtonHover = useColorModeValue("orange.500", "orange.400");
   const contentBodyBg = useColorModeValue('#E9F2DA', 'gray.900');
-  const cancelButtonBg = useColorModeValue('mainGray', 'gray.600');
 
   return (
     <>
       <Button
-        bg={ctaButtonBg}
-        _hover={{ backgroundColor: ctaButtonHover }}
-        _active={{ backgroundColor: ctaButtonBg }}
-        color='white'
+        variant='primary'
         rounded={{ base: 'full', sm: 'lg' }}
         title='Create Post'
         h={'min-content'}
@@ -117,18 +111,10 @@ const Drawer: FC = () => {
                   </DrawerBody>
 
                   <DrawerFooter borderTopWidth='1px'>
-                    <Button mr={3} bg={cancelButtonBg} onClick={onClose}>
+                    <Button mr={3} variant='secondary' onClick={onClose}>
                       Cancel
                     </Button>
-                    <Button
-                      type='submit'
-                      bg={ctaButtonBg}
-                      _hover={{ backgroundColor: ctaButtonHover }}
-                      _active={{ backgroundColor: ctaButtonBg }}
-                      color='white'
-                    >
-                      Submit
-                    </Button>
+                    <Button type='submit' variant='primary'>Submit</Button>
                   </DrawerFooter>
                 </DrawerContent>
               </Form>

@@ -13,13 +13,13 @@ export const categories = [
 
   {
     title: 'JavaScript',
-    iconPath: '/images/js-icon.svg',
+    iconPath: '/images/javascript-icon.svg',
     alt: 'Javascript Icon'
   },
 
   {
     title: 'OFF',
-    iconPath: '/images/question-circle-icon.svg',
+    iconPath: '/images/off-icon.svg',
     alt: 'A question mark symbol inside a circle'
   }
 ];

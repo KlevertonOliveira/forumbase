@@ -1,8 +1,12 @@
+import { FC, ReactNode } from 'react';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
-import {ReactNode} from 'react';
 import Navbar from '../Navbar';
 
-const Layout = ({children}:{children:ReactNode}) => {
+type LayoutProps = {
+    children: ReactNode;
+};
+
+const Layout: FC<LayoutProps> = ({ children }) => {
     return (
         <Flex 
             direction={'column'}
@@ -16,7 +20,7 @@ const Layout = ({children}:{children:ReactNode}) => {
                 as='main'
                 flex={1}
             >
-                <Box flex={1} bg={useColorModeValue('mainGray', 'transparent')}>
+                <Box flex={1} bg={useColorModeValue('mainGray.100', 'transparent')}>
                     {children}
                 </Box>
             </Flex>
