@@ -37,8 +37,18 @@ const CustomPagination: FC<CustomPaginationProps> = ({ postsPerPage, postsTotal,
 
   /* Custom Styles for Current Page Button */
 
+  const pageButtonStyles = {
+    bg: useColorModeValue('blue.600', 'whiteAlpha.900'),
+    _hover: {
+      bg: useColorModeValue('blue.700', 'whiteAlpha.800'),
+    },
+    _active: { bg: useColorModeValue('blue.800', 'whiteAlpha.700') },
+    color: useColorModeValue('white', 'blue.600')
+  }
+
   const currentPageButtonStyles = {
     backgroundColor: useColorModeValue('orange.400', 'orange.500'),
+    color: 'white',
     _hover: {
       backgroundColor: useColorModeValue('orange.500', 'orange.600'),
     },
@@ -61,19 +71,8 @@ const CustomPagination: FC<CustomPaginationProps> = ({ postsPerPage, postsTotal,
         w='full'
         justifyContent={'center'}
         gap={8}
-        p={2}
-        mt={'2px'}
-        borderRadius={'md'}
-        bg={useColorModeValue('white', 'gray.700')}
-        borderBottom={'1px solid'}
-        borderColor={useColorModeValue('gray.300', 'gray.600')}
       >
-        <PaginationPrevious
-          bg={'blue.600'}
-          _hover={{ bg: 'blue.700' }}
-          _active={{ bg: 'blue.800' }}
-          color='white'
-        >
+        <PaginationPrevious {...pageButtonStyles}>
           Previous
         </PaginationPrevious>
         <PaginationPageGroup>
@@ -81,25 +80,17 @@ const CustomPagination: FC<CustomPaginationProps> = ({ postsPerPage, postsTotal,
             pages.map((page: number) => (
               <PaginationPage
                 key={`pagination_page_${page}`}
+                {...pageButtonStyles}
                 page={page}
                 w={7}
                 fontSize="sm"
-                color='white'
-                bg={'blue.600'}
-                _hover={{ bg: 'blue.700' }}
-                _active={{ bg: 'blue.800' }}
                 _current={{ ...currentPageButtonStyles }}
               >
               </PaginationPage>
             ))
           }
         </PaginationPageGroup>
-        <PaginationNext
-          bg={'blue.600'}
-          _hover={{ bg: 'blue.700' }}
-          _active={{ bg: 'blue.800' }}
-          color='white'
-        >
+        <PaginationNext {...pageButtonStyles}>
           Next
         </PaginationNext>
       </PaginationContainer>

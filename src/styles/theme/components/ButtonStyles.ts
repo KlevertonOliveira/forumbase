@@ -5,7 +5,7 @@ export const ButtonStyles = {
     transition:"background-color 350ms ease-in-out",
     _focus:{
         ring: 3,
-        ringColor: mode('orange.400', 'orange.400')(props)
+        ringColor: 'orange.400'
       }
   }),
 

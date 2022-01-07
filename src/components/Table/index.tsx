@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Flex, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Text, useColorModeValue, Image, Center } from '@chakra-ui/react';
+import { Flex, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Text, useColorModeValue, Image, Center, Button } from '@chakra-ui/react';
 import { categories } from '../../data/categories';
 
 type TableProps = {
@@ -14,14 +14,15 @@ const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCate
   tableCategories.unshift(
     {
       title: 'ALL',
-      iconPath: '/images/collection-icon.svg',
-      alt: 'An icon of a collection of text files'
+      iconPath: '/images/all-topics-icon.svg',
+      alt: 'An icon of a collection of files'
     }
   )
 
   /* Special styles (for light/dark mode) */
   const categoriesBgColor = useColorModeValue('white', 'gray.700');
-  const categoriesBgColorHover = useColorModeValue('blue.100', 'gray.600');
+  const categoriesBgColorHover = useColorModeValue('blue.100', 'gray.500');
+  const currentSelectedCategoryBg = useColorModeValue('blue.200', 'gray.600');
   const categoriesTextColor = useColorModeValue('gray.900', 'white');
   const TrBorderColor = useColorModeValue('gray.300', 'gray.600');
 
@@ -42,20 +43,29 @@ const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCate
             return (
               <Tr
                 key={category.title}
-                bg={isCurrentSelectedCategory ? categoriesBgColorHover : categoriesBgColor}
+                title={category.title}
+                bg={isCurrentSelectedCategory ? currentSelectedCategoryBg : categoriesBgColor}
                 color={categoriesTextColor}
                 cursor={'pointer'}
                 _hover={{ backgroundColor: isCurrentSelectedCategory ? 'none' : categoriesBgColorHover }}
-                transition="background-color 200ms ease-in-out"
+                _focus={{
+                  border: '3px solid',
+                  borderColor: 'orange.400'
+                }}
+                tabIndex={0}
+                onClick={() => { setCurrentSelectedCategory(category.title); }}
+                onKeyPress={(event) => {
+                  (event.key === 'Enter' || event.key === ' ') &&
+                    setCurrentSelectedCategory(category.title);
+                }}
               >
                 <Td
                   borderBottom='1px solid'
                   borderColor={TrBorderColor}
-                  onClick={() => { setCurrentSelectedCategory(category.title); }}
                 >
                   <Flex gap={3} alignItems={'center'}>
                     <Image src={category.iconPath} alt={category.alt} />
-                    <Text fontWeight={'semibold'}>{category.title}</Text>
+                    <Text fontWeight={isCurrentSelectedCategory ? 'bold' : 'medium'}>{category.title}</Text>
                   </Flex>
                 </Td>
               </Tr>

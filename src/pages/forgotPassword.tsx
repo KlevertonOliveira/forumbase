@@ -27,7 +27,7 @@ const ForgotPassword: NextPage = () => {
       minH='100vh'
     >
       <Head>
-        <title>ForumBase | Log In</title>
+        <title>ForumBase | Forgot Password</title>
       </Head>
 
       <Flex

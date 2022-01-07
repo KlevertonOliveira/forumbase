@@ -59,7 +59,7 @@ const Home: NextPage = () => {
             </InputGroup>
           </Flex>
 
-          {/* Section 2 (Mobile) - Category Filter Selection (Up to md size)*/}
+          {/* Section 2 (Mobile Only) - Category Filter Selection (Up to md size)*/}
           <Flex
             as='section'
             w='full'
@@ -79,7 +79,7 @@ const Home: NextPage = () => {
             </Select>
           </Flex>
 
-          {/* Section 2 (Md and greater) -> Category Select + Posts */}
+          {/* Section 2 (Md size and greater) -> Category Select + Posts */}
           <Flex
             as='section'
             mt={8}
@@ -94,12 +94,14 @@ const Home: NextPage = () => {
               />
             </Box>
 
-            <Box flex={1} minW={0} mt={{ base: 6, md: 10 }}>
+            <Box flex={1} minW={0}>
               <Posts posts={posts} />
             </Box>
           </Flex>    
         </Container>
+
       </main>
+
     </Box>
   );
 };

@@ -10,26 +10,17 @@ type PostProps = {
 
 const Post: FC<PostProps> = ({ post }) => {
 
-  const category = categories.find(category => category.title.toLowerCase() === post.category.toLowerCase());
+  const category = categories.find(
+    category => category.title.toLowerCase() === post.category.toLowerCase()
+  );
 
   return (
     <Flex
       as='article'
-      w='full'
-      bg={useColorModeValue('white', 'gray.700')}
-      color={useColorModeValue('gray.900', 'gray.200')}
-      transition="background-color 350ms ease-in-out"
-      _hover={{
-        bg: useColorModeValue('blue.100', 'gray.600'),
-      }}
-      boxShadow={'md'}
-      borderRadius={'md'}
-      p={2}
-      cursor='pointer'
       gap={4}
-      borderBottom='1px solid'
-      borderColor={useColorModeValue('gray.300', 'gray.600')}
+      w='full'
       minW={0}
+      textAlign={'left'}
     >
       <Box>
         <Avatar size='md' name={post.creatorEmail} />
@@ -37,7 +28,7 @@ const Post: FC<PostProps> = ({ post }) => {
 
       <Flex
         flex={1}
-        minWidth={0}
+        minW={0}
         direction={'column'}
         justifyContent={'space-between'}
       >

@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import { FC, useState } from "react";
 
-import Link from 'next/link';
-
+import { Box, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
 import { TPost } from '../../types/TPost';
+import { useRouter } from 'next/router';
 import Post from '../Post';
-import { Box } from '@chakra-ui/react';
 import CustomPagination from '../CustomPagination';
 
 type PostsProps = {
   posts: TPost[];
 };
 
-const Posts: React.FC<PostsProps> = ({ posts }) => {
+const Posts: FC<PostsProps> = ({ posts }) => {
+
+  const router = useRouter();
+
+  function redirectUserToPost(postId: string) {
+    return router.push(`post/${postId}`);
+  }
 
   const [currentSelectedPage, setCurrentSelectedPage] = useState<number>(1);
   const postsPerPage = 4;
@@ -19,26 +24,68 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
   const pagesVisited = (currentSelectedPage - 1) * postsPerPage;
   const currentPagePosts = posts.slice(pagesVisited, pagesVisited + postsPerPage);
 
-  return (
-    <Box as='section' minW={0}>
-      {
-        currentPagePosts.map(post =>
-          <Link
-            key={post.id}
-            href={`post/${post.id}`}
-          >
-            <a>
-              <Post post={post} />
-            </a>
-          </Link>
-        )
-      }
+  /* Special styles (for light/dark mode) */
 
-      <CustomPagination
-        postsTotal={postsTotal}
-        postsPerPage={postsPerPage}
-        setCurrentSelectedPage={setCurrentSelectedPage}
-      />
+  const tableRowStyles = {
+    bg: useColorModeValue('white', 'gray.700'),
+    color: useColorModeValue('gray.900', 'white'),
+    _hover: { backgroundColor: useColorModeValue('blue.100', 'gray.600') },
+    transition: "background-color 200ms ease-in-out",
+    _focus: {
+      border: '3px solid',
+      borderColor: 'orange.400'
+    }
+  };
+
+  const tableDataStyles = {
+    borderBottom: '1px solid',
+    borderColor: useColorModeValue('gray.300', 'gray.600'),
+    p: 2
+  };
+
+  return (
+    <Box w={'full'}>
+      <ChakraTable variant='simple' w='full' size={'md'} style={{ tableLayout: 'fixed' }}>
+        <Thead>
+          <Tr>
+            <Th textAlign={'left'}>Posts</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {
+            currentPagePosts.map((post: TPost) => {
+              return (
+                <Tr
+                  key={post.id}
+                  {...tableRowStyles}
+                  cursor={'pointer'}
+                  tabIndex={0}
+                  title={`Go to "${post.title}"`}
+                  onClick={() => { redirectUserToPost(post.id!); }}
+                  onKeyPress={(event) => {
+                    (event.key === 'Enter' || event.key === ' ') &&
+                      redirectUserToPost(post.id!);
+                  }}
+                >
+                  <Td {...tableDataStyles}>
+                    <Post post={post} />
+                  </Td>
+                </Tr>
+              );
+            }
+            )
+          }
+          <Tr bg={tableRowStyles.bg}>
+            <Td {...tableDataStyles} p={3}>
+              <CustomPagination
+                postsTotal={postsTotal}
+                postsPerPage={postsPerPage}
+                setCurrentSelectedPage={setCurrentSelectedPage}
+              />
+            </Td>
+          </Tr>
+        </Tbody>
+      </ChakraTable>
     </Box>
   );
 };
