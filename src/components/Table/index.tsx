@@ -4,11 +4,11 @@ import { Flex, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Text, useColorMod
 import { categories } from '../../data/categories';
 
 type TableProps = {
-  currentSelectedCategory: string;
-  setCurrentSelectedCategory: (category: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
 };
 
-const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCategory }) => {
+const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
 
   let tableCategories = [...categories];
   tableCategories.unshift(
@@ -38,7 +38,7 @@ const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCate
       <Tbody>
         {
           tableCategories.map(category => {
-            const isCurrentSelectedCategory = (currentSelectedCategory === category.title);
+            const isCurrentSelectedCategory = (selectedCategory === category.title);
 
             return (
               <Tr
@@ -53,10 +53,10 @@ const Table: FC<TableProps> = ({ currentSelectedCategory, setCurrentSelectedCate
                   borderColor: 'orange.400'
                 }}
                 tabIndex={0}
-                onClick={() => { setCurrentSelectedCategory(category.title); }}
+                onClick={() => { setSelectedCategory(category.title); }}
                 onKeyPress={(event) => {
                   (event.key === 'Enter' || event.key === ' ') &&
-                    setCurrentSelectedCategory(category.title);
+                    setSelectedCategory(category.title);
                 }}
               >
                 <Td

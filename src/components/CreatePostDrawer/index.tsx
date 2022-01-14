@@ -1,24 +1,55 @@
 import { FC } from "react";
-import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast } from '@chakra-ui/react';
+import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast, Tooltip } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 import { RiFileAddFill } from 'react-icons/ri';
 import { createPostValidationSchema } from '../../helpers/validation/createPostValidationSchema';
 import { createPostForm } from '../../types/CreatePostForm';
-import Input from '../Input';
-import Select from '../Select';
-import Textarea from '../Textarea';
+import CustomInput from '../CustomInput';
+import CustomSelect from '../CustomSelect';
+import CustomTextarea from '../CustomTextarea';
 import { categories } from '../../data/categories';
+import { useAuth } from '../../hooks/useAuth';
+import { TPost } from '../../types/TPost';
+import { addPost } from '../../services/realtimeDatabase';
+import { capitalizeWord } from '../../helpers/other/capitalizeWord';
 
-const Drawer: FC = () => {
+const CreatePostDrawer: FC = () => {
+
+  const { currentUser } = useAuth();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  function handleSubmit({ title, content, category }: createPostForm) {
-    console.log(`${title}, ${content}, ${category}`);
+  async function handleSubmit({ title, content, category }: createPostForm) {
+
+    let feedbackType: 'success' | 'error';
+    let feedbackContent: string;
+
+    const newPost: TPost = {
+      title,
+      content,
+      category,
+      createdAt: new Date().getTime(),
+      creatorId: currentUser!.uid,
+      creatorEmail: currentUser!.email!,
+      creatorPhotoURL: currentUser!.photoURL
+    };
+
+    try {
+      await addPost(newPost);
+      feedbackType = 'success';
+      feedbackContent = 'Your post has been successfully created!';
+    }
+
+    catch (error) {
+      console.log(error);
+      feedbackType = 'error';
+      feedbackContent = 'An error has ocurred. Please, try again.';
+    }
+
     toast({
-      title: 'Success!',
-      description: "Your post was successfully created!",
-      status: 'success',
+      title: capitalizeWord(feedbackType),
+      description: feedbackContent,
+      status: feedbackType,
       duration: 5000,
       isClosable: true,
     });
@@ -27,26 +58,27 @@ const Drawer: FC = () => {
 
   /* Special styles (for light/dark mode) */
 
-  const contentBodyBg = useColorModeValue('#E9F2DA', 'gray.900');
+  const contentBodyBg = useColorModeValue('mainGray.200', 'gray.900');
 
   return (
     <>
-      <Button
-        variant='primary'
-        rounded={{ base: 'full', sm: 'lg' }}
-        title='Create Post'
-        h={'min-content'}
-        w={'min-content'}
-        py={{ base: 3, sm: 3 }}
-        px={{ base: 3, md: 7 }}
-        disabled={false}
-        onClick={onOpen}
-      >
-        <Icon as={RiFileAddFill} h={6} w={6} mr={{ base: 0, sm: 1 }} />
-        <Box display={{ base: 'none', sm: 'inline' }}>
-          Create Post
-        </Box>
-      </Button>
+      <Tooltip label='Start a discussion'>
+        <Button
+          variant='primary'
+          rounded={{ base: 'full', sm: 'lg' }}
+          h={'min-content'}
+          w={'min-content'}
+          py={{ base: 3, sm: 3 }}
+          px={{ base: 3, md: 7 }}
+          disabled={!currentUser}
+          onClick={onOpen}
+        >
+          <Icon as={RiFileAddFill} h={6} w={6} mr={{ base: 0, sm: 1 }} />
+          <Box display={{ base: 'none', sm: 'inline' }}>
+            Create Post
+          </Box>
+        </Button>
+      </Tooltip>
 
       <ChakraDrawer
         isOpen={isOpen}
@@ -81,7 +113,7 @@ const Drawer: FC = () => {
                           Title
                           <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
                         </FormLabel>
-                        <Input name='title' type='text' placeholder='Post Title' icon='info' />
+                        <CustomInput name='title' type='text' placeholder='Post Title' icon='info' />
                       </FormControl>
 
                       <FormControl>
@@ -89,14 +121,14 @@ const Drawer: FC = () => {
                           Category
                           <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
                         </FormLabel>
-                        <Select name='category'>
+                        <CustomSelect name='category'>
                           <option value="">Select a category</option>
                           {
                             categories.map(category =>
                               <option key={category.title} value={category.title}>{category.title}</option>
                             )
                           }
-                        </Select>
+                        </CustomSelect>
                       </FormControl>
 
                       <FormControl>
@@ -104,7 +136,7 @@ const Drawer: FC = () => {
                           Content
                           <Text display={'inline'} text='sm' color={'red.500'}>*</Text>
                         </FormLabel>
-                        <Textarea name='content' placeholder='Post Content' />
+                        <CustomTextarea name='content' placeholder='Post Content' />
                       </FormControl>
 
                     </VStack>
@@ -127,4 +159,4 @@ const Drawer: FC = () => {
   );
 };
 
-export default Drawer;
+export default CreatePostDrawer;

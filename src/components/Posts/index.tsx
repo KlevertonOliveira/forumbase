@@ -5,6 +5,7 @@ import { TPost } from '../../types/TPost';
 import { useRouter } from 'next/router';
 import Post from '../Post';
 import CustomPagination from '../CustomPagination';
+import { compareTimestamps } from '../../helpers/other/compareTimestamps';
 
 type PostsProps = {
   posts: TPost[];
@@ -22,7 +23,7 @@ const Posts: FC<PostsProps> = ({ posts }) => {
   const postsPerPage = 4;
   const postsTotal = posts.length;
   const pagesVisited = (currentSelectedPage - 1) * postsPerPage;
-  const currentPagePosts = posts.slice(pagesVisited, pagesVisited + postsPerPage);
+  const currentPagePosts = posts.sort(compareTimestamps).slice(pagesVisited, pagesVisited + postsPerPage);
 
   /* Special styles (for light/dark mode) */
 
@@ -78,8 +79,8 @@ const Posts: FC<PostsProps> = ({ posts }) => {
           <Tr bg={tableRowStyles.bg}>
             <Td {...tableDataStyles} p={3}>
               <CustomPagination
-                postsTotal={postsTotal}
-                postsPerPage={postsPerPage}
+                contentTotalSize={postsTotal}
+                contentPerPage={postsPerPage}
                 setCurrentSelectedPage={setCurrentSelectedPage}
               />
             </Td>

@@ -1,5 +1,5 @@
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { Menu, MenuButton as ChakraMenuButton, Button, Avatar, IconButton, MenuList, MenuItem, useColorModeValue, Icon, useColorMode } from '@chakra-ui/react';
+import { Menu, MenuButton, Button, Avatar, IconButton, MenuList, MenuItem, useColorModeValue, Icon, useColorMode, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { FC, useState } from "react";
 import { GiArchiveRegister } from 'react-icons/gi';
@@ -7,14 +7,37 @@ import { GoSignOut, GoSignIn } from 'react-icons/go';
 
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { IoHome } from 'react-icons/io5';
+import { useAuth } from '../../hooks/useAuth';
 
-const MenuButton: FC = () => {
+type CustomMenuButtonProps = {
+  avatarSize: 'sm' | 'md';
+}
 
-  const [isLogged, setIsLogged] = useState(false);
-  const { toggleColorMode } = useColorMode();
+const CustomMenuButton: FC<CustomMenuButtonProps> = ({ avatarSize }) => {
+
+  const { currentUser, logout } = useAuth();
   const router = useRouter();
+  const toast = useToast();
+
+  async function handleLogOut() {
+    try {
+      await logout();
+      router.replace('/');
+
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: 'Error!',
+        description: "Error when trying to log out. Please, try again.",
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  }
 
   /* Special styles for (light/dark mode) */
+  const { toggleColorMode } = useColorMode();
   const menuButtonBg = useColorModeValue('white', 'transparent');
   const menuButtonBgHover = useColorModeValue('gray.50', 'gray.800');
   const menuButtonTextColor = useColorModeValue('gray.900', 'white');
@@ -23,10 +46,10 @@ const MenuButton: FC = () => {
   return (
     <Menu closeOnBlur>
       {
-        isLogged ?
+        !!currentUser ?
 
           (
-            <ChakraMenuButton
+            <MenuButton
               as={Button}
               rounded={'full'}
               variant={'link'}
@@ -34,16 +57,17 @@ const MenuButton: FC = () => {
               minW={0}
             >
               <Avatar
-                size={'sm'}
-                src={'/images/user.jpg'}
+                size={avatarSize}
+                src={currentUser.photoURL!}
+                name={currentUser.email![0]}  
               />
-            </ChakraMenuButton>
+            </MenuButton>
           )
 
           :
 
           (
-            <ChakraMenuButton
+            <MenuButton
               as={IconButton}
               aria-label='Options'
               icon={<HamburgerIcon />}
@@ -75,15 +99,15 @@ const MenuButton: FC = () => {
           </MenuItem>
         }
 
-        {isLogged &&
-          <MenuItem>
+        {!!currentUser &&
+          <MenuItem onClick={handleLogOut}>
             <Icon as={GoSignOut} mr={2} />
             Log Out
           </MenuItem>
         }
 
         {
-          !isLogged && router.pathname !== '/login' &&
+          !currentUser && router.pathname !== '/login' &&
           <MenuItem onClick={() => { router.push('/login'); }}>
             <Icon as={GoSignIn} mr={2} />
             Log In
@@ -91,7 +115,7 @@ const MenuButton: FC = () => {
         }
 
         {
-          !isLogged && router.pathname !== '/signup' &&
+          !currentUser && router.pathname !== '/signup' &&
           <MenuItem onClick={() => { router.push('/signup'); }}>
             <Icon as={GiArchiveRegister} mr={2} />
             Sign Up
@@ -102,4 +126,4 @@ const MenuButton: FC = () => {
   );
 };
 
-export default MenuButton;
+export default CustomMenuButton;

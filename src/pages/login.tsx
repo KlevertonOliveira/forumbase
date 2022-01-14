@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import NextLink from 'next/link';
 import Head from 'next/head';
 
-import Input from '../components/Input';
-import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
+import CustomInput from '../components/CustomInput';
+import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, Flex, useBreakpointValue, HStack, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
-
-import { FcGoogle } from 'react-icons/fc';
 
 import { signInValidationSchema } from '../helpers/validation/signInValidationSchema';
 import { LoginForm } from '../types/LoginForm';
 
 import MenuButton from '../components/MenuButton';
 
+import { useAuth } from '../hooks/useAuth';
+import { useRouter } from 'next/router';
+import SignInWithGoogleButton from '../components/SignInWithGoogleButton';
+import { usePublicRoute } from '../hooks/usePublicRoute';
+import CustomMenuButton from '../components/MenuButton';
+
 const Login: NextPage = () => {
 
-  const ctaButton = useColorModeValue('orange.400', 'orange.500');
-  const ctaButtonHover = useColorModeValue('orange.500', 'orange.400');
+  const { login } = useAuth();
+  const toast = useToast();
+  const router = useRouter();
 
-  function handleSubmit({ email, password }: LoginForm) {
-    alert(`${email}, ${password}`);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit({ email, password }: LoginForm) {
+
+    setLoading(true);
+
+    try {
+      await login(email, password);
+      setLoading(false);
+      router.push('/');
+    }
+    catch (error) {
+      console.log(error);
+      toast({
+        title: 'Error!',
+        description: "Error when trying to log user in. Please, try again.",
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      setLoading(false);
+    }
   }
 
   return (
@@ -56,7 +81,7 @@ const Login: NextPage = () => {
         <Flex
           as='section'
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('mainGray.100', 'transparent')}
+          bg={useColorModeValue('mainGray.200', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
@@ -65,7 +90,7 @@ const Login: NextPage = () => {
         >
 
           <Flex justifyContent={`flex-end`} m={1}>
-            <MenuButton />
+            <CustomMenuButton avatarSize='md' />
           </Flex>
 
           <Box>
@@ -87,11 +112,11 @@ const Login: NextPage = () => {
                     () => (
                       <Form>
                         <FormControl>
-                          <Input name='email' type='email' placeholder='Email' icon='email' />
+                          <CustomInput name='email' type='email' placeholder='Email' icon='email' />
                         </FormControl>
 
                         <FormControl mt={3}>
-                          <Input name='password' type='password' placeholder='Password' icon='password' />
+                          <CustomInput name='password' type='password' placeholder='Password' icon='password' />
                         </FormControl>
 
                         <Flex justifyContent={'flex-end'} mt={3}>
@@ -104,13 +129,9 @@ const Login: NextPage = () => {
                           aria-label='Submit Form'
                           w='full'
                           mt={4}
-                          bg={ctaButton}
-                          colorScheme='orange'
-                          color='white'
-                          _hover={{
-                            background: ctaButtonHover,
-                          }}
+                          variant='primary'
                           type='submit'
+                          disabled={loading}
                         >
                           Sign In
                         </Button>
@@ -136,20 +157,7 @@ const Login: NextPage = () => {
             <Text>
               Or
             </Text>
-            <Button
-              aria-label='Sign in with Google account'
-              bg='black'
-              _hover={{
-                backgroundColor: '#191919',
-                transitionProperty: 'backgroundColor',
-                msTransitionDuration: '200',
-                transitionTimingFunction: 'ease-in'
-              }}
-              type='button'
-            >
-              <FcGoogle />
-              <Text ml='2' color='white'>Sign in with Google</Text>
-            </Button>
+            <SignInWithGoogleButton loading={loading} setLoading={setLoading} />
           </HStack>
 
         </Flex>
@@ -158,4 +166,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default Login;
+export default usePublicRoute(Login);

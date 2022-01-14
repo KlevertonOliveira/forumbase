@@ -10,6 +10,11 @@ export const CommonInputSelectStyles = {
         },
         
         border: '3px solid',
+        borderColor: mode('gray.400', 'gray.600')(props),
+        
+        _hover:{
+          borderColor: 'gray.500',
+        },
 
         _focus:{
           borderColor: mode('orange.500', 'orange.400')(props),

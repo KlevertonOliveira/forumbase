@@ -12,12 +12,12 @@ import {
 import { useColorModeValue } from '@chakra-ui/react';
 
 type CustomPaginationProps = {
-  postsPerPage: number;
-  postsTotal: number;
+  contentPerPage: number;
+  contentTotalSize: number;
   setCurrentSelectedPage: (page: number) => void;
 };
 
-const CustomPagination: FC<CustomPaginationProps> = ({ postsPerPage, postsTotal, setCurrentSelectedPage }) => {
+const CustomPagination: FC<CustomPaginationProps> = ({ contentPerPage, contentTotalSize, setCurrentSelectedPage }) => {
 
   const {
     currentPage,
@@ -25,10 +25,10 @@ const CustomPagination: FC<CustomPaginationProps> = ({ postsPerPage, postsTotal,
     pagesCount,
     pages
   } = usePagination({
-    total: postsTotal,
+    total: contentTotalSize,
     initialState: {
       currentPage: 1,
-      pageSize: postsPerPage,
+      pageSize: contentPerPage,
       isDisabled: false,
     }
   });

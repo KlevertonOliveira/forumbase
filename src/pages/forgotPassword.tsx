@@ -3,13 +3,14 @@ import { NextPage } from 'next';
 import NextLink from 'next/link';
 import Head from 'next/head';
 
-import Input from '../components/Input';
+import Input from '../components/CustomInput';
 import MenuButton from '../components/MenuButton';
 import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 
 import { ForgotPasswordForm } from '../types/ForgotPasswordForm';
 import { forgotPasswordValidationSchema } from '../helpers/validation/forgotPasswordValidationSchema';
+import CustomMenuButton from '../components/MenuButton';
 
 
 const ForgotPassword: NextPage = () => {
@@ -54,7 +55,7 @@ const ForgotPassword: NextPage = () => {
         <Flex
           as='section'
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('mainGray.100', 'transparent')}
+          bg={useColorModeValue('mainGray.200', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
@@ -63,7 +64,7 @@ const ForgotPassword: NextPage = () => {
         >
 
           <Flex justifyContent={`flex-end`} m={1}>
-            <MenuButton />
+            <CustomMenuButton avatarSize='md' />
           </Flex>
 
           <Box>
@@ -89,16 +90,11 @@ const ForgotPassword: NextPage = () => {
                         </FormControl>
 
                         <Button
+                          variant='primary'
+                          type='submit'
                           aria-label='Submit Form'
                           w='full'
                           mt={4}
-                          bg={ctaButton}
-                          colorScheme='orange'
-                          color='white'
-                          _hover={{
-                            background: ctaButtonHover,
-                          }}
-                          type='submit'
                         >
                           Reset Password
                         </Button>

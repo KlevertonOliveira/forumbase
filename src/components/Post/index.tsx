@@ -1,8 +1,9 @@
-import { Avatar, Box, Flex, Heading, Text, Image, useColorModeValue } from '@chakra-ui/react';
+import { Avatar, Box, Flex, Heading, Text, Image } from '@chakra-ui/react';
 import { FC } from "react";
 import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
 import { TPost } from '../../types/TPost';
 import { categories } from '../../data/categories';
+import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
 
 type PostProps = {
   post: TPost;
@@ -38,7 +39,7 @@ const Post: FC<PostProps> = ({ post }) => {
 
         <Text fontSize='xs' isTruncated>
           <strong>{getUsernameFromEmail(post.creatorEmail)}</strong> {" "}
-          started 3 weeks ago
+          started {getTimeDifferenceToPostTimestamp(post.createdAt)} ago
         </Text>
       </Flex>
 

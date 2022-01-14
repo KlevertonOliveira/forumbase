@@ -1,13 +1,13 @@
 import {mode} from '@chakra-ui/theme-tools';
 
 export const ButtonStyles = {
-  baseStyle:(props:any)=>({
+  baseStyle:{
     transition:"background-color 350ms ease-in-out",
     _focus:{
         ring: 3,
         ringColor: 'orange.400'
-      }
-  }),
+    }
+  },
 
   variants:{
     primary:(props:any)=>({
@@ -16,7 +16,10 @@ export const ButtonStyles = {
       backgroundColor: mode('orange.400', 'orange.500')(props),
       
       _hover: {
-        backgroundColor: mode('orange.500', 'orange.600')(props)
+        backgroundColor: mode('orange.500', 'orange.600')(props),
+        _disabled:{
+          backgroundColor: mode('orange.400', 'orange.500')(props),
+        }
       },
       
       _active: {
@@ -25,7 +28,7 @@ export const ButtonStyles = {
 
       _focus:{
         ringColor: mode('orange.500', 'orange.300')(props)
-      }
+      },
     }),
 
     secondary:(props: any)=>({
@@ -33,14 +36,10 @@ export const ButtonStyles = {
       color: mode('gray.700', 'white')(props),
       border: '1px solid',
       borderColor: mode('mainGray.200', 'gray.500')(props),
-      backgroundColor: mode('mainGray.100', 'gray.600')(props),
+      backgroundColor: mode('mainGray.200', 'gray.600')(props),
       _hover:{
-        backgroundColor: mode('mainGray.200', 'gray.700')(props),
-      },
-      _active:{
-        backgroundColor: mode('mainGray.300', 'gray.800')(props),
+        backgroundColor: mode('mainGray.300', 'gray.700')(props),
       }
-      
     })
   }
 }

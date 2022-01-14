@@ -1,26 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import NextLink from 'next/link';
 
 import MenuButton from '../components/MenuButton';
-import Input from '../components/Input';
 import { Formik, Form } from 'formik';
-import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, useColorMode, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
-
-import { FcGoogle } from 'react-icons/fc';
+import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, useColorMode, Flex, useBreakpointValue, HStack, useToast } from '@chakra-ui/react';
 
 import { SignUpForm } from '../types/SignUpForm';
 import { signUpValidationSchema } from '../helpers/validation/signUpValidationSchema';
-import MenuButtonTwo from '../components/MenuButton';
+import { useAuth } from '../hooks/useAuth';
+import { usePublicRoute } from '../hooks/usePublicRoute';
+import { useRouter } from 'next/router';
+import SignInWithGoogleButton from '../components/SignInWithGoogleButton';
+import CustomInput from '../components/CustomInput';
+import CustomMenuButton from '../components/MenuButton';
 
 const SignUp: NextPage = () => {
 
-  const submitButtonBg = useColorModeValue('orange.400', 'orange.500');
-  const submitButtonHoverBg = useColorModeValue('orange.500', 'orange.400');
+  const { signUp } = useAuth();
 
-  function handleSubmit({ email, password, confirmPassword }: SignUpForm) {
-    alert(`${email}, ${password}, ${confirmPassword}`);
+  const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
+
+  const router = useRouter();
+
+  async function handleSubmit({ email, password }: SignUpForm) {
+
+    setLoading(true);
+
+    try {
+      await signUp(email, password);
+      setLoading(false);
+      router.push('/');
+
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        title: 'Error!',
+        description: "Error when trying to log user in. Please, try again.",
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+      setLoading(false);
+    }
   }
 
   return (
@@ -45,7 +71,7 @@ const SignUp: NextPage = () => {
         >
           <Image
             src='/images/join.svg'
-            alt='An illustration of animated characters -cumprimentando- each other.'
+            alt='An illustration of animated characters greeting each other.'
             boxSize='full'
             p={4}
             maxH={{ base: '50vh', lg: 'full' }}
@@ -57,7 +83,7 @@ const SignUp: NextPage = () => {
           as='section'
           order={{ base: 10, lg: -1 }}
           flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('mainGray.100', 'transparent')}
+          bg={useColorModeValue('mainGray.200', 'transparent')}
           direction={'column'}
           justifyContent={'space-between'}
           py={1}
@@ -66,7 +92,7 @@ const SignUp: NextPage = () => {
         >
 
           <Flex justifyContent={`flex-end`} my={1} mx={2}>
-            <MenuButtonTwo />
+            <CustomMenuButton avatarSize='md' />
           </Flex>
 
           <Box>
@@ -92,15 +118,15 @@ const SignUp: NextPage = () => {
                       <Form>
                         <VStack spacing={3}>
                           <FormControl>
-                            <Input name='email' type='email' placeholder='Email' icon='email' />
+                            <CustomInput name='email' type='email' placeholder='Email' icon='email' />
                           </FormControl>
 
                           <FormControl>
-                            <Input name='password' type='password' placeholder='Password' icon='password' />
+                            <CustomInput name='password' type='password' placeholder='Password' icon='password' />
                           </FormControl>
 
                           <FormControl>
-                            <Input name='confirmPassword' type='password' placeholder='Confirm Password' icon='password' />
+                            <CustomInput name='confirmPassword' type='password' placeholder='Confirm Password' icon='password' />
                           </FormControl>
                         </VStack>
 
@@ -108,13 +134,9 @@ const SignUp: NextPage = () => {
                           aria-label='Submit Form'
                           w='full'
                           mt={4}
-                          bg={submitButtonBg}
-                          colorScheme='orange'
-                          color='white'
-                          _hover={{
-                            background: submitButtonHoverBg,
-                          }}
+                          variant='primary'
                           type='submit'
+                          disabled={loading}
                         >
                           Sign Up
                         </Button>
@@ -137,20 +159,7 @@ const SignUp: NextPage = () => {
             <Text>
               Or
             </Text>
-            <Button
-              aria-label='Sign in with Google account'
-              bg='black'
-              _hover={{
-                backgroundColor: '#191919',
-                transitionProperty: 'backgroundColor',
-                msTransitionDuration: '200',
-                transitionTimingFunction: 'ease-in'
-              }}
-              type='button'
-            >
-              <FcGoogle />
-              <Text ml='2' color='white'>Sign in with Google</Text>
-            </Button>
+            <SignInWithGoogleButton loading={loading} setLoading={setLoading} />
           </HStack>
 
         </Flex>
@@ -159,4 +168,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-export default SignUp;
+export default usePublicRoute(SignUp);

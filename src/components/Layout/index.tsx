@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Grid, useColorModeValue } from '@chakra-ui/react';
 import Navbar from '../Navbar';
 
 type LayoutProps = {
@@ -8,23 +8,20 @@ type LayoutProps = {
 
 const Layout: FC<LayoutProps> = ({ children }) => {
     return (
-        <Flex 
-            direction={'column'}
-            minH={'100vh'}
-        >
-            <header>
-                <Navbar />
-            </header>
+      <Grid
+        minH={'100vh'}
+        bg={useColorModeValue('mainGray.100', 'transparent')}
+        templateColumns={'1fr'}
+        templateRows={'auto 1fr'}
+      >
+        <header>
+          <Navbar />
+        </header>
 
-            <Flex
-                as='main'
-                flex={1}
-            >
-                <Box flex={1} bg={useColorModeValue('mainGray.100', 'transparent')}>
-                    {children}
-                </Box>
-            </Flex>
-        </Flex>
+        <main>
+          {children}
+        </main>
+      </Grid>
     )
 }
 

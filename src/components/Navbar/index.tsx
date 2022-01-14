@@ -5,6 +5,7 @@ import { Box, Flex, Icon, Text, Link, useColorModeValue, Container } from '@chak
 
 import { MdQuestionAnswer } from 'react-icons/md';
 import MenuButton from '../MenuButton';
+import CustomMenuButton from '../MenuButton';
 
 const Navbar: FC = () => {
 
@@ -38,7 +39,7 @@ const Navbar: FC = () => {
               </Link>
             </NextLink>
 
-            <MenuButton />
+            <CustomMenuButton avatarSize='sm' />
 
           </Flex>
         </Container>
