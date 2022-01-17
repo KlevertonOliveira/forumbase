@@ -1,17 +1,19 @@
-import { HamburgerIcon } from '@chakra-ui/icons';
-import { Menu, MenuButton, Button, Avatar, IconButton, MenuList, MenuItem, useColorModeValue, Icon, useColorMode, useToast } from '@chakra-ui/react';
+import { FC } from "react";
+
 import { useRouter } from 'next/router';
-import { FC, useState } from "react";
+import { useAuth } from '../../hooks/useAuth';
+
+import { Menu, MenuButton, Button, Avatar, IconButton, MenuList, MenuItem, useColorModeValue, Icon, useColorMode, useToast } from '@chakra-ui/react';
+
+import { HamburgerIcon } from '@chakra-ui/icons';
 import { GiArchiveRegister } from 'react-icons/gi';
 import { GoSignOut, GoSignIn } from 'react-icons/go';
-
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { IoHome } from 'react-icons/io5';
-import { useAuth } from '../../hooks/useAuth';
 
 type CustomMenuButtonProps = {
   avatarSize: 'sm' | 'md';
-}
+};
 
 const CustomMenuButton: FC<CustomMenuButtonProps> = ({ avatarSize }) => {
 
@@ -36,7 +38,8 @@ const CustomMenuButton: FC<CustomMenuButtonProps> = ({ avatarSize }) => {
     }
   }
 
-  /* Special styles for (light/dark mode) */
+  /* Special styles from Chakra (for light/dark mode) */
+
   const { toggleColorMode } = useColorMode();
   const menuButtonBg = useColorModeValue('white', 'transparent');
   const menuButtonBgHover = useColorModeValue('gray.50', 'gray.800');
@@ -59,7 +62,7 @@ const CustomMenuButton: FC<CustomMenuButtonProps> = ({ avatarSize }) => {
               <Avatar
                 size={avatarSize}
                 src={currentUser.photoURL!}
-                name={currentUser.email![0]}  
+                name={currentUser.email![0]}
               />
             </MenuButton>
           )
@@ -92,10 +95,10 @@ const CustomMenuButton: FC<CustomMenuButtonProps> = ({ avatarSize }) => {
         {
           router.pathname !== '/' &&
           <MenuItem
-              icon={<Icon as={IoHome} />}
-              onClick={() => { router.push('/'); }}
+            icon={<Icon as={IoHome} />}
+            onClick={() => { router.push('/'); }}
           >
-              Go to Home
+            Go to Home
           </MenuItem>
         }
 

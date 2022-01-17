@@ -1,10 +1,11 @@
 import { FC, useState } from "react";
-
-import { Box, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
-import { TPost } from '../../types/TPost';
 import { useRouter } from 'next/router';
+
 import Post from '../Post';
 import CustomPagination from '../CustomPagination';
+import { Box, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
+
+import { TPost } from '../../types/TPost';
 import { compareTimestamps } from '../../helpers/other/compareTimestamps';
 
 type PostsProps = {
@@ -19,13 +20,15 @@ const Posts: FC<PostsProps> = ({ posts }) => {
     return router.push(`post/${postId}`);
   }
 
+  /* Pagination Area */
+
   const [currentSelectedPage, setCurrentSelectedPage] = useState<number>(1);
   const postsPerPage = 4;
   const postsTotal = posts.length;
   const pagesVisited = (currentSelectedPage - 1) * postsPerPage;
   const currentPagePosts = posts.sort(compareTimestamps).slice(pagesVisited, pagesVisited + postsPerPage);
 
-  /* Special styles (for light/dark mode) */
+  /* Special styles from Chakra (for light/dark mode) */
 
   const tableRowStyles = {
     bg: useColorModeValue('white', 'gray.700'),

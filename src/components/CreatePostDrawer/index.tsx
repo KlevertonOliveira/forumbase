@@ -1,17 +1,23 @@
 import { FC } from "react";
-import { useDisclosure, Button, Drawer as ChakraDrawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast, Tooltip } from '@chakra-ui/react';
-import { Formik, Form } from 'formik';
-import { RiFileAddFill } from 'react-icons/ri';
-import { createPostValidationSchema } from '../../helpers/validation/createPostValidationSchema';
-import { createPostForm } from '../../types/CreatePostForm';
+
+import { useAuth } from '../../hooks/useAuth';
+
 import CustomInput from '../CustomInput';
 import CustomSelect from '../CustomSelect';
 import CustomTextarea from '../CustomTextarea';
-import { categories } from '../../data/categories';
-import { useAuth } from '../../hooks/useAuth';
+import { useDisclosure, Button, Drawer, DrawerOverlay, DrawerContent, DrawerCloseButton, DrawerHeader, DrawerBody, Box, FormControl, Text, DrawerFooter, Icon, VStack, FormLabel, useColorModeValue, useToast } from '@chakra-ui/react';
+import { Formik, Form } from 'formik';
+
 import { TPost } from '../../types/TPost';
-import { addPost } from '../../services/realtimeDatabase';
+import { createPostForm } from '../../types/CreatePostForm';
+
+import { createPostValidationSchema } from '../../helpers/validation/createPostValidationSchema';
 import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+
+import { addPost } from '../../services/realtimeDatabase';
+import { categories } from '../../data/categories';
+
+import { RiFileAddFill } from 'react-icons/ri';
 
 const CreatePostDrawer: FC = () => {
 
@@ -22,7 +28,7 @@ const CreatePostDrawer: FC = () => {
   async function handleSubmit({ title, content, category }: createPostForm) {
 
     let feedbackType: 'success' | 'error';
-    let feedbackContent: string;
+    let feedbackDescription: string;
 
     const newPost: TPost = {
       title,
@@ -37,18 +43,18 @@ const CreatePostDrawer: FC = () => {
     try {
       await addPost(newPost);
       feedbackType = 'success';
-      feedbackContent = 'Your post has been successfully created!';
+      feedbackDescription = 'Your post has been successfully created!';
     }
 
     catch (error) {
       console.log(error);
       feedbackType = 'error';
-      feedbackContent = 'An error has ocurred. Please, try again.';
+      feedbackDescription = 'An error has ocurred. Please, try again.';
     }
 
     toast({
       title: capitalizeWord(feedbackType),
-      description: feedbackContent,
+      description: feedbackDescription,
       status: feedbackType,
       duration: 5000,
       isClosable: true,
@@ -56,13 +62,11 @@ const CreatePostDrawer: FC = () => {
     onClose();
   }
 
-  /* Special styles (for light/dark mode) */
-
+  /* Special styles from Chakra (for light/dark mode) */
   const contentBodyBg = useColorModeValue('mainGray.200', 'gray.900');
 
   return (
     <>
-      <Tooltip label='Start a discussion'>
         <Button
           variant='primary'
           rounded={{ base: 'full', sm: 'lg' }}
@@ -77,10 +81,9 @@ const CreatePostDrawer: FC = () => {
           <Box display={{ base: 'none', sm: 'inline' }}>
             Create Post
           </Box>
-        </Button>
-      </Tooltip>
+      </Button>
 
-      <ChakraDrawer
+      <Drawer
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
@@ -154,7 +157,7 @@ const CreatePostDrawer: FC = () => {
           }
         </Formik>
 
-      </ChakraDrawer>
+      </Drawer>
     </>
   );
 };

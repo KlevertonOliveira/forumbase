@@ -1,9 +1,11 @@
-import { Avatar, Box, Flex, Heading, Text, Image } from '@chakra-ui/react';
 import { FC } from "react";
-import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
+
+import { Avatar, Box, Flex, Heading, Text, Image } from '@chakra-ui/react';
+
 import { TPost } from '../../types/TPost';
-import { categories } from '../../data/categories';
+import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
 import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
+import { categories } from '../../data/categories';
 
 type PostProps = {
   post: TPost;
@@ -11,7 +13,7 @@ type PostProps = {
 
 const Post: FC<PostProps> = ({ post }) => {
 
-  const category = categories.find(
+  const postCategory = categories.find(
     category => category.title.toLowerCase() === post.category.toLowerCase()
   );
 
@@ -24,7 +26,7 @@ const Post: FC<PostProps> = ({ post }) => {
       textAlign={'left'}
     >
       <Box>
-        <Avatar size='md' name={post.creatorEmail} />
+        <Avatar size='md' src={post.creatorPhotoURL!} name={post.creatorEmail} />
       </Box>
 
       <Flex
@@ -45,8 +47,8 @@ const Post: FC<PostProps> = ({ post }) => {
 
       <Box>
         <Image
-          src={category?.iconPath}
-          alt={category?.alt}
+          src={postCategory?.iconPath}
+          alt={postCategory?.alt}
         />
       </Box>
     </Flex>

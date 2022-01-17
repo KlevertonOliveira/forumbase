@@ -1,7 +1,9 @@
-import { Button, Text, useToast } from '@chakra-ui/react';
+import { FC } from "react";
+
 import { useRouter } from 'next/router';
-import { FC, useState } from "react";
 import { useAuth } from '../../hooks/useAuth';
+
+import { Button, Text, useToast } from '@chakra-ui/react';
 import { FcGoogle } from 'react-icons/fc';
 
 type SignInWithGoogleButtonProps = {

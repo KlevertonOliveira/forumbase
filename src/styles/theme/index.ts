@@ -6,15 +6,11 @@ import {LinkStyles as Link} from './components/LinkStyles';
 
 const theme = extendTheme({
   colors:{
-    /*
-      #E8EAED
-      #F1F3F4 
-    */
-      mainGray: {
-        100: '#F1F3F4',
-        200: '#E8EAED',
-        300: '#d1d3d5'
-      },
+    mainGray: {
+      100: '#F1F3F4',
+      200: '#E8EAED',
+      300: '#d1d3d5'
+    },
   },
   
   fonts:{

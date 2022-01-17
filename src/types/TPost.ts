@@ -1,5 +1,4 @@
 import { TAnswer } from './TAnswer';
-import { categories } from '../data/categories';
 
 export type TPost = {
     id?: string;

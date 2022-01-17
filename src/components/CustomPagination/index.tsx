@@ -1,4 +1,5 @@
 import { FC } from "react";
+
 import {
   Pagination,
   usePagination,
@@ -35,7 +36,7 @@ const CustomPagination: FC<CustomPaginationProps> = ({ contentPerPage, contentTo
 
   setCurrentSelectedPage(currentPage);
 
-  /* Custom Styles for Current Page Button */
+  /* Special styles from Chakra (for light/dark mode) */
 
   const pageButtonStyles = {
     bg: useColorModeValue('blue.600', 'whiteAlpha.900'),

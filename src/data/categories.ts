@@ -20,6 +20,6 @@ export const categories = [
   {
     title: 'OFF',
     iconPath: '/images/off-topic-icon.svg',
-    alt: 'A question mark symbol inside a circle'
+    alt: 'A black circle with a white hash symbol inside.'
   }
 ];

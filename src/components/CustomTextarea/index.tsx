@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { InfoIcon } from '@chakra-ui/icons';
 import { InputGroup, InputLeftElement, Textarea, Text, useColorModeValue } from '@chakra-ui/react';
+import { InfoIcon } from '@chakra-ui/icons';
 
 import { useField } from 'formik';
 import { useAuth } from '../../hooks/useAuth';
@@ -9,7 +9,6 @@ import { useAuth } from '../../hooks/useAuth';
 type CustomTextareaProps = {
   name: string;
   placeholder: string;
-  value?: string;
 };
 
 const CustomTextarea: FC<CustomTextareaProps> = (props) => {

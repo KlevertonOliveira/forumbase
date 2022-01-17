@@ -1,123 +1,144 @@
 import React from 'react';
+
 import { NextPage } from 'next';
 import NextLink from 'next/link';
 import Head from 'next/head';
 
+import { useAuth } from '../hooks/useAuth';
+import { usePublicRoute } from '../hooks/usePublicRoute';
+
+import PagesGrid from '../components/PagesGrid';
 import Input from '../components/CustomInput';
-import MenuButton from '../components/MenuButton';
-import { Image, Box, Button, FormControl, Heading, Text, Link, useColorModeValue, VStack, Flex, useBreakpointValue, HStack } from '@chakra-ui/react';
+import ReturnToLinkButton from '../components/ReturnToLinkButton';
+import { Box, Button, FormControl, Heading, Text, Link, Flex, useBreakpointValue, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 
 import { ForgotPasswordForm } from '../types/ForgotPasswordForm';
 import { forgotPasswordValidationSchema } from '../helpers/validation/forgotPasswordValidationSchema';
-import CustomMenuButton from '../components/MenuButton';
 
+import { forgotPasswordBgImage } from '../data/pagesBgImages';
+import { capitalizeWord } from '../helpers/other/capitalizeWord';
 
 const ForgotPassword: NextPage = () => {
 
-  const ctaButton = useColorModeValue('orange.400', 'orange.500');
-  const ctaButtonHover = useColorModeValue('orange.500', 'orange.400');
+  const { sendRedefinePasswordEmail } = useAuth();
+  const toast = useToast();
 
-  function handleSubmit({ email }: ForgotPasswordForm) {
-    alert(`${email}`);
+  async function handleSubmit({ email }: ForgotPasswordForm) {
+
+    let feedbackType: 'error' | 'success';
+    let feedbackDescription: string;
+
+    try {
+      await sendRedefinePasswordEmail(email);
+      feedbackType = 'success';
+      feedbackDescription = `An email has been sent to ${email}.
+      Please, follow the instructions to reset your password.`;
+    }
+
+    catch (error) {
+      console.log(error);
+      feedbackType = 'error';
+      feedbackDescription = `An error has ocurred.\nPlease, make sure the email address provided is correct and try again.`;
+      console.log(feedbackDescription);
+      ;
+    }
+
+    toast({
+      title: capitalizeWord(feedbackType),
+      description: feedbackDescription,
+      status: feedbackType,
+      duration: 5000,
+      isClosable: true,
+    });
   }
 
   return (
-    <Flex
-      as='main'
-      minH='100vh'
+    <PagesGrid
+      {...forgotPasswordBgImage}
     >
       <Head>
         <title>ForumBase | Forgot Password</title>
       </Head>
 
       <Flex
-        as='section'
-        direction={{ base: 'column', lg: 'row' }}
-        flex={1}
+        direction={'column'}
+        justifyContent={'space-between'}
+        alignItems={'center'}
+        my={12}
+        mx={'auto'}
+        w={'90%'}
       >
-        {/* Image Section */}
-        <Box
-          as='section'
-          flex={{ base: 1, lg: 7 }}
-        >
-          <Image
-            src='/images/forgot-password.svg'
-            alt='Illustration of a man looking at a board with an unknown password'
-            boxSize='full'
-            bg={'white'}
-            p={4}
-            maxH={{ base: '50vh', lg: '100vh' }}
-          />
+        <Box>
+          <Heading
+            as='h1'
+            textAlign={'center'}
+            size={useBreakpointValue({ base: 'xl', sm: '2xl' })}
+            mb={8}
+          >
+            Forgot Password
+          </Heading>
+
+          <Text
+            maxW={'30rem'}
+            textAlign={'center'}
+            fontWeight={'semibold'}
+            fontSize={{ base: 'sm', sm: 'md', lg: 'lg' }}
+          >
+            Don&apos;t worry, it happens to the best of us.
+          </Text>
+
+          <Box w='full' maxW='35rem' mt={12}>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              validationSchema={forgotPasswordValidationSchema}
+              onSubmit={handleSubmit}
+            >
+              {
+                () => (
+                  <Form>
+                    <FormControl>
+                      <Input name='email' type='email' placeholder='Your Email' icon='email' />
+                    </FormControl>
+
+                    <Button
+                      variant='primary'
+                      type='submit'
+                      aria-label='Submit Form'
+                      w='full'
+                      mt={4}
+                    >
+                      Reset Password
+                    </Button>
+                  </Form>
+                )
+              }
+            </Formik>
+
+            <Text
+              fontSize='md'
+              fontWeight='medium'
+              textAlign={'center'}
+              mt={8}
+            >
+              Don&apos;t have an account? {" "}
+              <NextLink href='/signup' passHref>
+                <Link
+                >
+                  Sign Up
+                </Link>
+              </NextLink>
+            </Text>
+          </Box>
         </Box>
 
-        {/* Form Section */}
-        <Flex
-          as='section'
-          flex={{ base: 1, lg: 5 }}
-          bg={useColorModeValue('mainGray.200', 'transparent')}
-          direction={'column'}
-          justifyContent={'space-between'}
-          py={1}
-          pb={8}
-          gap={{ base: 12, lg: 0 }}
-        >
-
-          <Flex justifyContent={`flex-end`} m={1}>
-            <CustomMenuButton avatarSize='md' />
-          </Flex>
-
-          <Box>
-            <VStack spacing={{ base: 6, sm: 7, lg: 8 }} mx='auto' w={{ base: '90%', lg: '90%' }}>
-              <Heading
-                as='h1'
-                size={useBreakpointValue({ base: 'lg', sm: 'xl', lg: 'lg', xl: 'xl' })}
-              >
-                Redefine Password
-              </Heading>
-
-              <Box w='90%' maxW='30rem'>
-                <Formik
-                  initialValues={{ email: '', password: '' }}
-                  validationSchema={forgotPasswordValidationSchema}
-                  onSubmit={handleSubmit}
-                >
-                  {
-                    () => (
-                      <Form>
-                        <FormControl>
-                          <Input name='email' type='email' placeholder='Your Email' icon='email' />
-                        </FormControl>
-
-                        <Button
-                          variant='primary'
-                          type='submit'
-                          aria-label='Submit Form'
-                          w='full'
-                          mt={4}
-                        >
-                          Reset Password
-                        </Button>
-                      </Form>
-                    )
-                  }
-                </Formik>
-              </Box>
-
-            </VStack>
-          </Box>
-
-          <Flex justifyContent={'flex-end'} mr={3}>
-            <NextLink href='/login' passHref>
-              <Link>
-                Return to Login
-              </Link>
-            </NextLink>
-          </Flex>
+        <Flex justifyContent={'center'}>
+          <ReturnToLinkButton linkPage='Login' />
         </Flex>
+
       </Flex>
-    </Flex >
+    </PagesGrid>
   );
 };
 
-export default ForgotPassword;
+export default usePublicRoute(ForgotPassword);

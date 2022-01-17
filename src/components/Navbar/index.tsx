@@ -1,11 +1,10 @@
 import { FC } from 'react';
 import NextLink from 'next/link';
 
+import CustomMenuButton from '../CustomMenuButton';
 import { Box, Flex, Icon, Text, Link, useColorModeValue, Container } from '@chakra-ui/react';
 
 import { MdQuestionAnswer } from 'react-icons/md';
-import MenuButton from '../MenuButton';
-import CustomMenuButton from '../MenuButton';
 
 const Navbar: FC = () => {
 

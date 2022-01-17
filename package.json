@@ -1,5 +1,6 @@
 {
   "name": "forumbase",
+  "author": "Kleverton Oliveira",
   "private": true,
   "scripts": {
     "dev": "next dev",

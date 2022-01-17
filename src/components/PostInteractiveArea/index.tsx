@@ -1,17 +1,20 @@
 import { FC, useState } from "react";
 
-import AlertDialog from '../../components/AlertDialog';
-
-import { Box, Flex, Heading, Text, IconButton, useColorModeValue, Avatar, Tooltip, useToast } from '@chakra-ui/react';
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
-import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
-import { useAuth } from '../../hooks/useAuth';
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
-import { removeAnswer, removePost } from '../../services/realtimeDatabase';
 import { useRouter } from 'next/router';
+import { useAuth } from '../../hooks/useAuth';
+
 import EditPostQuestion from '../EditPostQuestion';
 import EditPostAnswer from '../EditPostAnswer';
+import CustomAlertDialog from '../CustomAlertDialog';
+import { Box, Flex, Heading, Text, IconButton, useColorModeValue, Avatar, Tooltip, useToast } from '@chakra-ui/react';
+
+import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
+import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
+import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+
+import { removeAnswer, removePost } from '../../services/realtimeDatabase';
+
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 
 interface CommonProps {
   postId: string;
@@ -79,7 +82,8 @@ const PostInteractiveArea: FC<PostInteractiveAreaProps> = (
     });
   }
 
-  /* Special styles from Chakra */
+  /* Special styles from Chakra (for light/dark mode) */
+
   const iconButtonBg = useColorModeValue('whiteAlpha.700', 'gray.700');
   const elementsBorderColor = useColorModeValue('gray.500', 'gray.300');
 
@@ -105,12 +109,12 @@ const PostInteractiveArea: FC<PostInteractiveAreaProps> = (
             <Box
               as='section'
               pb={6}
-              borderBottom='3px solid'
+              borderBottom='2px solid'
               borderColor={elementsBorderColor}
             >
               <Flex
                 pb={3}
-                borderBottom={'3px solid'}
+                borderBottom={'2px solid'}
                 borderColor={elementsBorderColor}
                 w='full'
                 maxW='100vw'
@@ -182,7 +186,7 @@ const PostInteractiveArea: FC<PostInteractiveAreaProps> = (
           )
       }
 
-      <AlertDialog
+      <CustomAlertDialog
         title={`Delete ${type == 'question' ? 'Post' : 'Answer'}`}
         deleteInteractiveArea={deleteInteractiveArea}
         isOpen={isAlertDialogOpen}

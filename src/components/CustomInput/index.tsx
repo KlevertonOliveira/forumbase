@@ -12,7 +12,6 @@ type CustomInputProps = {
   placeholder: string;
   type: 'email' | 'password' | 'text';
   icon: 'email' | 'password' | 'info' | 'search';
-  value?: string;
 };
 
 const CustomInput: FC<CustomInputProps> = (props) => {
@@ -38,7 +37,7 @@ const CustomInput: FC<CustomInputProps> = (props) => {
           <InputRightElement
             cursor={'pointer'}
             title='Toggle Password Visibility'
-            onClick={() => { setIsPasswordVisible(!isPasswordVisible); }}
+              onClick={() => { setIsPasswordVisible(!isPasswordVisible); }}
           >
             {isPasswordVisible ? <ViewIcon /> : <ViewOffIcon />}
           </InputRightElement>

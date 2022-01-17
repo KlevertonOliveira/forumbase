@@ -1,14 +1,15 @@
 import { FC } from "react";
 
-import { Flex, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, Text, useColorModeValue, Image, Center, Button } from '@chakra-ui/react';
+import { Flex, Table, Tbody, Td, Th, Thead, Tr, Text, useColorModeValue, Image } from '@chakra-ui/react';
+
 import { categories } from '../../data/categories';
 
-type TableProps = {
+type CustomTableProps = {
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
 };
 
-const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
+const CustomTable: FC<CustomTableProps> = ({ selectedCategory, setSelectedCategory }) => {
 
   let tableCategories = [...categories];
   tableCategories.unshift(
@@ -17,9 +18,10 @@ const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
       iconPath: '/images/all-topics-icon.svg',
       alt: 'An icon of a collection of files'
     }
-  )
+  );
 
-  /* Special styles (for light/dark mode) */
+  /* Special styles from Chakra (for light/dark mode) */
+
   const categoriesBgColor = useColorModeValue('white', 'gray.700');
   const categoriesBgColorHover = useColorModeValue('blue.100', 'gray.500');
   const currentSelectedCategoryBg = useColorModeValue('blue.200', 'gray.600');
@@ -27,7 +29,7 @@ const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
   const TrBorderColor = useColorModeValue('gray.300', 'gray.600');
 
   return (
-    <ChakraTable variant='simple' maxW={'max-content'} size={'md'}>
+    <Table variant='simple' maxW={'max-content'} size={'md'}>
 
       <Thead>
         <Tr>
@@ -46,13 +48,13 @@ const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
                 title={category.title}
                 bg={isCurrentSelectedCategory ? currentSelectedCategoryBg : categoriesBgColor}
                 color={categoriesTextColor}
-                cursor={'pointer'}
                 _hover={{ backgroundColor: isCurrentSelectedCategory ? 'none' : categoriesBgColorHover }}
                 _focus={{
                   border: '3px solid',
                   borderColor: 'orange.400'
                 }}
                 tabIndex={0}
+                cursor={'pointer'}
                 onClick={() => { setSelectedCategory(category.title); }}
                 onKeyPress={(event) => {
                   (event.key === 'Enter' || event.key === ' ') &&
@@ -75,8 +77,8 @@ const Table: FC<TableProps> = ({ selectedCategory, setSelectedCategory }) => {
         }
       </Tbody>
 
-    </ChakraTable>
+    </Table>
   );
 };
 
-export default Table;
+export default CustomTable;

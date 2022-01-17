@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, UserCredential, User, signInWithPopup } from 'firebase/auth';
+
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, UserCredential, User, signInWithPopup, confirmPasswordReset } from 'firebase/auth';
 import { auth } from '../libs/firebaseConfig';
 
 type AuthContextProps = {
@@ -8,6 +9,7 @@ type AuthContextProps = {
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
   loginWithGooglePopup: () => Promise<UserCredential>;
+  sendRedefinePasswordEmail: (email: string) => Promise<void>;
 };
 
 type AuthContextProviderProps = {
@@ -41,6 +43,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     return await signInWithPopup(firebaseAuth, provider);
   }
 
+  async function sendRedefinePasswordEmail(email: string) {
+    return await sendPasswordResetEmail(auth, email);
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
@@ -58,6 +64,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
         login,
         logout,
         loginWithGooglePopup,
+        sendRedefinePasswordEmail,
       }
     }>
       {!loading && children}

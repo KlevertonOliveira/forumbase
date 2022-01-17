@@ -1,12 +1,15 @@
-import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
+import { FC } from "react";
+
+import CustomTextarea from '../CustomTextarea';
 import { FormControl, FormLabel, Text, Box, Tooltip, IconButton, useColorModeValue, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
-import { FC } from "react";
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
-import { updateAnswer } from '../../services/realtimeDatabase';
+
 import { AnswerForm } from '../../types/AnswerForm';
+import { updateAnswer } from '../../services/realtimeDatabase';
 import { answerValidationSchema } from '../../helpers/validation/answerValidationSchema';
-import CustomTextarea from '../CustomTextarea';
+import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+
+import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 
 type EditPostAnswerProps = {
   postId: string;
@@ -53,7 +56,8 @@ const EditPostAnswer: FC<EditPostAnswerProps> = ({ postId, answerId, currentCont
     });
   }
 
-  /* Special styles from chakra */
+  /* Special styles from Chakra (for light/dark mode) */
+
   const iconButtonBg = useColorModeValue('whiteAlpha.700', 'gray.700');
 
   return (

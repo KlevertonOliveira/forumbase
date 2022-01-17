@@ -1,23 +1,25 @@
-import { Button, AlertDialog as ChakraAlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
+import { Button, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react';
 import React from 'react';
 
-type AlertDialogProps = {
+type CustomAlertDialogProps = {
   title: string;
   isOpen: boolean;
   onClose: () => void;
   deleteInteractiveArea: () => void;
 };
 
-const AlertDialog: React.FC<AlertDialogProps> = ({ title, deleteInteractiveArea, isOpen, onClose }) => {
+const CustomAlertDialog: React.FC<CustomAlertDialogProps> = ({ title, deleteInteractiveArea, isOpen, onClose }) => {
 
   return (
     <>
-      <ChakraAlertDialog
+      <AlertDialog
         isOpen={isOpen}
         onClose={onClose}
-        leastDestructiveRef={undefined}>
+        leastDestructiveRef={undefined}
+      >
         <AlertDialogOverlay>
           <AlertDialogContent>
+
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
               {title}
             </AlertDialogHeader>
@@ -38,11 +40,12 @@ const AlertDialog: React.FC<AlertDialogProps> = ({ title, deleteInteractiveArea,
                 Yes, delete it
               </Button>
             </AlertDialogFooter>
+
           </AlertDialogContent>
         </AlertDialogOverlay>
-      </ChakraAlertDialog>
+      </AlertDialog>
     </>
   );
 };
 
-export default AlertDialog;
+export default CustomAlertDialog;
