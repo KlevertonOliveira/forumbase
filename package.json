@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "@ajna/pagination": "^1.4.13",
@@ -16,6 +17,7 @@
     "@emotion/styled": "^11",
     "date-diff": "^1.0.2",
     "firebase": "9.3.0",
+    "firebase-tools": "^10.1.0",
     "formik": "^2.2.9",
     "framer-motion": "^4",
     "next": "12.0.7",

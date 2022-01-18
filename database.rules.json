@@ -1,0 +1,58 @@
+{
+  "rules": {
+    "posts": {
+      ".read": true,
+      "$postId": {
+        ".write": "auth.uid != null",
+        ".validate": "newData.hasChildren(['title', 'content']) && ((!data.exists() && newData.hasChildren(['category', 'creatorId', 'creatorEmail', 'createdAt'])) || (data.exists()))",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 4 && newData.val().length < 140 && (!data.parent().exists() || data.parent().exists() && data.parent().child('creatorId').val() == auth.uid)"
+        },
+        "content": {
+          ".validate": "newData.isString() && newData.val().length > 4 && newData.val().length < 140 && (!data.parent().exists() || data.parent().exists() && data.parent().child('creatorId').val() == auth.uid)"
+        },
+        "category": {
+          ".validate": "newData.isString() && !data.exists() && (newData.val()=='HTML' || newData.val()=='JavaScript' || newData.val()=='CSS' || newData.val()=='OFF')"
+        },
+        "creatorId": {
+          ".validate": "newData.isString() && !data.exists() && newData.val() == auth.uid"
+        },
+        "creatorEmail": {
+          ".validate": "newData.isString() && !data.exists() && newData.val() == auth.token.email"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber() && !data.exists() && newData.val() < now"
+        },
+        "creatorPhotoURL": {
+          ".validate": "newData.isString() && !data.parent().exists()"
+        },
+        "answers": {
+          "$answerId": {
+            ".validate": "(auth.uid != null) && newData.hasChildren(['content']) && ((!data.exists() && newData.hasChildren(['creatorId', 'creatorEmail', 'createdAt'])) || (data.exists() && data.child('creatorId').val() == auth.uid))",
+            "content": {
+              ".validate": "newData.isString() && newData.val().length > 4 && newData.val().length < 140"
+            },
+            "creatorId": {
+              ".validate": "newData.isString() && !data.exists() && newData.val() == auth.uid"
+            },
+            "creatorEmail": {
+              ".validate": "newData.isString() && !data.exists() && newData.val() == auth.token.email"
+            },
+            "createdAt": {
+              ".validate": "newData.isNumber() && !data.exists() && newData.val() < now"
+            },
+            "creatorPhotoURL": {
+              ".validate": "newData.isString() && !data.parent().exists()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
