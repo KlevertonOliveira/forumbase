@@ -55,6 +55,7 @@ const Login: NextPage = () => {
     >
       <Head>
         <title>ForumBase | Log In</title>
+        <meta name="description" content="Log in to your ForumBase account and be part of our community." />
       </Head>
 
       <Flex
@@ -71,7 +72,7 @@ const Login: NextPage = () => {
             as='h1'
             mb={4}
             textAlign={'center'}
-            size={useBreakpointValue({ base: 'lg', sm: 'xl', lg: '2xl' })}
+            size={useBreakpointValue({ base: 'lg', sm: '2xl', lg: 'xl' })}
           >
             Log in to Your Account
           </Heading>

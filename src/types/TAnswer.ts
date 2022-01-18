@@ -1,5 +1,6 @@
 export type TAnswer = {
     id?: string;
+    index?: number;
     content: string;
     createdAt: number;
     creatorId: string;

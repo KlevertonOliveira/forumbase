@@ -59,6 +59,7 @@ const ForgotPassword: NextPage = () => {
     >
       <Head>
         <title>ForumBase | Forgot Password</title>
+        <meta name="description" content="Reset your ForumBase password." />
       </Head>
 
       <Flex

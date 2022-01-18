@@ -56,6 +56,7 @@ const SignUp: NextPage = () => {
     >
       <Head>
         <title>ForumBase | Sign Up</title>
+        <meta name="description" content="Create your ForumBase account and be part of our community!" />
       </Head>
 
       <Flex

@@ -15,6 +15,7 @@ const ErrorPage: NextPage = () => {
     >
       <Head>
         <title>ForumBase | Page Not Found</title>
+        <meta name="description" content="Ops! ForumBase Page Not Found" />
       </Head>
 
       <Flex px={4} direction={'column'} alignItems={'center'} justifyContent={'space-evenly'}>
