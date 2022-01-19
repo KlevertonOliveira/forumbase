@@ -1,4 +1,4 @@
-# ForumBase (English / Português)
+# :speech_balloon: ForumBase (English / Português)
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/KlevertonOliveira/forumbase/blob/main/LICENSE)
 
 ---
