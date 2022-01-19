@@ -67,7 +67,8 @@ or
 npm install
 
 # Create a Firebase Project and paste the Project's Firebase Configuration data at .env.local file, following the .env.example file model 
-/ Criar um Projeto Firebase e colar os dados de Configuração do Projeto Firebase no arquivo .env.local, seguindo o modelo do arquivo .env.example
+/ 
+# Criar um Projeto Firebase e colar os dados de Configuração do Projeto Firebase no arquivo .env.local, seguindo o modelo do arquivo .env.example
 
 # Run the project / Executar o projeto
 yarn dev
