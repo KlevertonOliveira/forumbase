@@ -15,7 +15,7 @@ export const TextareaStyles = {
       borderColor: mode('mainGray.300', 'gray.600')(props),
 
       _hover:{
-          borderColor: 'gray.500',
+          borderColor: mode('gray.400', 'gray.500')(props),
         },
 
       _focus:{
