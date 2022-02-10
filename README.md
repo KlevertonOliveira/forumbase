@@ -1,34 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# :speech_balloon: ForumBase (English / Português)
+[![NPM](https://img.shields.io/npm/l/react)](https://github.com/KlevertonOliveira/forumbase/blob/main/LICENSE)
 
-## Getting Started
+---
 
-First, run the development server:
+## :art: Layout web
+![Alt Text](project_preview/ForumBaseGif.gif)
+
+
+---
+
+[Project Presentation](https://forumbase-96f40.web.app/) /
+[Apresentação do Projeto](https://forumbase-96f40.web.app/)
+
+---
+
+## :mag_right: About the project / Sobre o projeto
+
+ForumBase is a project that I conceived and developed from scratch as a personal challenge in order to put my acquired knowledge into practice and learn new technologies during the process.
+
+The project's idea is to provide the community of users with an online environment conducive to the exchange of ideas and knowledge between developers of all levels, using the Q&A format, with all interaction carried out through posts and answers, similar to the scheme used on the Stack Overflow website, from which this application took its inspiration.
+
+The Next.js framework (React) was the most suitable choice for this application as it provides easy management of states and components, in addition to enabling easy integration with the other stacks used.
+
+In addition, the application also made use of Chakra UI library for a faster, concise, accessible and customizable interface development experience, as it allows the creation of a great and adaptable design system.
+
+Finally, the Firebase platform presented itself as the ideal tool for building the logical part of the project, being the structure responsible for the authentication flow, database interactions and hosting service for the application (and also being source of inspiration for the project's name!)
+
+---
+
+ForumBase é um projeto que idealizei e desenvolvi do zero como um desafio pessoal com o intuito de colocar em prática meus conhecimentos adquiridos e aprender novas tecnologias durante o processo.
+
+A ideia do projeto é fornecer à comunidade de usuários um ambiente online propício à troca de ideias e conhecimentos entre desenvolvedores de todos os níveis utilizando o formato Q&A, sendo toda a interação realizada através de publicações e respostas, tal como ocorre no site Stack Overflow (de onde esta aplicação obteve sua inspiração).
+
+O framework Next.js (React) foi a escolha mais indicada para essa aplicação por fornecer fácil gerenciamento de estados e componentes, além de possibilitar fácil integração com as demais stacks utilizadas.
+
+Além disso, a aplicação fez uso também da biblioteca Chakra UI para uma experiência de desenvolvimento de interfaces mais rápida, concisa, acessível e customizável, por permitir a criação de um ótimo e adaptável design system.
+
+Por fim, a plataforma Firebase se apresentou como a ferramenta ideal para construção da parte lógica do projeto, sendo a estrutura responsável pelo fluxo de autenticação, interações com o banco de dados e o serviço de hospedagem para a aplicação (além de servir como inspiração para o nome do projeto!).
+
+---
+
+## :gear: Technologies Used / Tecnologias utilizadas
+
+### Front end
+- HTML5
+- [Next JS](https://nextjs.org/) (React Framework)
+- [Chakra UI](https://chakra-ui.com/) (React Library for creating User Interfaces and Design Systems)
+- [Firebase](https://firebase.google.com/) (Google Platform for creating mobile and web applications)
+- [Typescript](https://www.typescriptlang.org/) (Superset of JavaScript)
+- [Formik + Yup](https://formik.org/) (React Libraries for building and validating forms)
+
+## :file_folder: How to run the project / Como executar o projeto
+
+Prerequisites / Pré-requisitos: npm / yarn
 
 ```bash
-npm run dev
-# or
+# Clone repository / Clonar repositório
+git clone git@github.com:KlevertonOliveira/forumbase.git
+
+# Enter the project folder / Entrar na pasta do projeto
+cd forumbase
+
+# Install dependencies / Instalar dependências
+yarn install 
+or 
+npm install
+
+# Create a Firebase Project and paste the Project's Firebase Configuration data at .env.local file, following the .env.example file model 
+/ 
+# Criar um Projeto Firebase e colar os dados de Configuração do Projeto Firebase no arquivo .env.local, seguindo o modelo do arquivo .env.example
+
+# Run the project / Executar o projeto
 yarn dev
+or
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## :raising_hand_man: Author / Autor
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+José Kleverton Yvens Oliveira
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://www.linkedin.com/in/kleverton-oliveira/
