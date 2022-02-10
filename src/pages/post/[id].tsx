@@ -17,9 +17,9 @@ import { Form, Formik } from 'formik';
 import { TAnswer } from '../../types/TAnswer';
 import { AnswerForm } from '../../types/AnswerForm';
 
-import { answerValidationSchema } from '../../helpers/validation/answerValidationSchema';
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
-import { compareTimestamps } from '../../helpers/other/compareTimestamps';
+import { answerValidationSchema } from '../../utils/validation/answerValidationSchema';
+import { capitalizeWord } from '../../utils/other/capitalizeWord';
+import { compareTimestamps } from '../../utils/other/compareTimestamps';
 
 import { addAnswer, usePost } from '../../services/realtimeDatabase';
 

@@ -11,13 +11,13 @@ import SignInWithGoogleButton from '../components/SignInWithGoogleButton';
 import { Box, Button, FormControl, Heading, Text, Link, VStack, Flex, useBreakpointValue, HStack, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 
-import { signInValidationSchema } from '../helpers/validation/signInValidationSchema';
+import { signInValidationSchema } from '../utils/validation/signInValidationSchema';
 import { LoginForm } from '../types/LoginForm';
 
 import { useAuth } from '../hooks/useAuth';
-import { usePublicRoute } from '../hooks/usePublicRoute';
 
 import { loginBgImage } from '../data/pagesBgImages';
+import { withPublic } from '../hooks/route';
 
 const Login: NextPage = () => {
 
@@ -139,4 +139,4 @@ const Login: NextPage = () => {
   );
 };
 
-export default usePublicRoute(Login);
+export default withPublic(Login);

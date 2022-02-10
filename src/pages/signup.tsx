@@ -15,9 +15,10 @@ import { Box, Button, FormControl, Heading, Text, Link, VStack, Flex, useBreakpo
 import { Formik, Form } from 'formik';
 
 import { SignUpForm } from '../types/SignUpForm';
-import { signUpValidationSchema } from '../helpers/validation/signUpValidationSchema';
+import { signUpValidationSchema } from '../utils/validation/signUpValidationSchema';
 
 import { signUpBgImage } from '../data/pagesBgImages';
+import { withPublic } from '../hooks/route';
 
 const SignUp: NextPage = () => {
 
@@ -138,4 +139,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-export default usePublicRoute(SignUp);
+export default withPublic(SignUp);

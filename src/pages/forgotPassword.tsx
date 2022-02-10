@@ -14,10 +14,11 @@ import { Box, Button, FormControl, Heading, Text, Link, Flex, useBreakpointValue
 import { Formik, Form } from 'formik';
 
 import { ForgotPasswordForm } from '../types/ForgotPasswordForm';
-import { forgotPasswordValidationSchema } from '../helpers/validation/forgotPasswordValidationSchema';
+import { forgotPasswordValidationSchema } from '../utils/validation/forgotPasswordValidationSchema';
 
 import { forgotPasswordBgImage } from '../data/pagesBgImages';
-import { capitalizeWord } from '../helpers/other/capitalizeWord';
+import { capitalizeWord } from '../utils/other/capitalizeWord';
+import { withPublic } from '../hooks/route';
 
 const ForgotPassword: NextPage = () => {
 
@@ -142,4 +143,4 @@ const ForgotPassword: NextPage = () => {
   );
 };
 
-export default usePublicRoute(ForgotPassword);
+export default withPublic(ForgotPassword);

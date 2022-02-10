@@ -3,8 +3,8 @@ import { FC } from "react";
 import { Avatar, Box, Flex, Heading, Text, Image } from '@chakra-ui/react';
 
 import { TPost } from '../../types/TPost';
-import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
-import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
+import { getUsernameFromEmail } from '../../utils/other/getUsernameFromEmail';
+import { getTimeDifferenceToPostTimestamp } from '../../utils/other/getTimeDifferenceToPostTimestamp';
 import { categories } from '../../data/categories';
 
 type PostProps = {

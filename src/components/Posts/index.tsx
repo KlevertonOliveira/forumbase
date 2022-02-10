@@ -6,7 +6,7 @@ import CustomPagination from '../CustomPagination';
 import { Box, Table as ChakraTable, Tbody, Td, Th, Thead, Tr, useColorModeValue } from '@chakra-ui/react';
 
 import { TPost } from '../../types/TPost';
-import { compareTimestamps } from '../../helpers/other/compareTimestamps';
+import { compareTimestamps } from '../../utils/other/compareTimestamps';
 
 type PostsProps = {
   posts: TPost[];

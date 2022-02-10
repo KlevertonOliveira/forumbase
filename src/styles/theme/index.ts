@@ -9,7 +9,7 @@ const theme = extendTheme({
     mainGray: {
       100: '#F1F3F4',
       200: '#E8EAED',
-      300: '#d1d3d5'
+      300: '#d1d3d5',
     },
   },
   

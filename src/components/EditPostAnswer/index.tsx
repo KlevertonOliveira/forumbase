@@ -6,8 +6,8 @@ import { Formik, Form } from 'formik';
 
 import { AnswerForm } from '../../types/AnswerForm';
 import { updateAnswer } from '../../services/realtimeDatabase';
-import { answerValidationSchema } from '../../helpers/validation/answerValidationSchema';
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+import { answerValidationSchema } from '../../utils/validation/answerValidationSchema';
+import { capitalizeWord } from '../../utils/other/capitalizeWord';
 
 import { CheckIcon, CloseIcon } from '@chakra-ui/icons';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { database } from '../libs/firebaseConfig';
+import { database } from '../lib/firebaseConfig';
 import { ref, onValue, remove, off, push, update, set } from 'firebase/database';
 
 import { TPost } from '../types/TPost';

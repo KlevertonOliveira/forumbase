@@ -9,8 +9,8 @@ export const CommonInputSelectStyles = {
           color: mode('gray.900', 'gray.200')(props) 
         },
         
-        border: '3px solid',
-        borderColor: mode('gray.400', 'gray.600')(props),
+        border: '2px solid',
+        borderColor: mode('mainGray.300', 'gray.600')(props),
         
         _hover:{
           borderColor: 'gray.500',

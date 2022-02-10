@@ -11,8 +11,8 @@ import { Formik, Form } from 'formik';
 import { TPost } from '../../types/TPost';
 import { createPostForm } from '../../types/CreatePostForm';
 
-import { createPostValidationSchema } from '../../helpers/validation/createPostValidationSchema';
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+import { createPostValidationSchema } from '../../utils/validation/createPostValidationSchema';
+import { capitalizeWord } from '../../utils/other/capitalizeWord';
 
 import { addPost } from '../../services/realtimeDatabase';
 import { categories } from '../../data/categories';

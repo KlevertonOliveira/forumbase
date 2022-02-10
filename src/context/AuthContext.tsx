@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, GoogleAuthProvider, UserCredential, User, signInWithPopup, confirmPasswordReset } from 'firebase/auth';
-import { auth } from '../libs/firebaseConfig';
+import { auth } from '../lib/firebaseConfig';
 
 type AuthContextProps = {
   currentUser: User | null;

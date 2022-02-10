@@ -5,8 +5,8 @@ import CustomTextarea from '../CustomTextarea';
 import { FormControl, FormLabel, Text, Box, Tooltip, IconButton, useColorModeValue, useToast } from '@chakra-ui/react';
 import { Formik, Form } from 'formik';
 
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
-import { editPostValidationSchema } from '../../helpers/validation/editPostValidationSchema';
+import { capitalizeWord } from '../../utils/other/capitalizeWord';
+import { editPostValidationSchema } from '../../utils/validation/editPostValidationSchema';
 import { EditPostForm } from '../../types/EditPostForm';
 import { updatePost } from '../../services/realtimeDatabase';
 

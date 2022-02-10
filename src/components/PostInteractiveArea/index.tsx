@@ -8,9 +8,9 @@ import EditPostAnswer from '../EditPostAnswer';
 import CustomAlertDialog from '../CustomAlertDialog';
 import { Box, Flex, Heading, Text, IconButton, useColorModeValue, Avatar, Tooltip, useToast } from '@chakra-ui/react';
 
-import { getTimeDifferenceToPostTimestamp } from '../../helpers/other/getTimeDifferenceToPostTimestamp';
-import { getUsernameFromEmail } from '../../helpers/other/getUsernameFromEmail';
-import { capitalizeWord } from '../../helpers/other/capitalizeWord';
+import { getTimeDifferenceToPostTimestamp } from '../../utils/other/getTimeDifferenceToPostTimestamp';
+import { getUsernameFromEmail } from '../../utils/other/getUsernameFromEmail';
+import { capitalizeWord } from '../../utils/other/capitalizeWord';
 
 import { removeAnswer, removePost } from '../../services/realtimeDatabase';
 
