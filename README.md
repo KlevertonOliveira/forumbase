@@ -4,7 +4,7 @@
 ---
 
 ## :art: Layout web
-![Alt Text](project_preview/ForumBaseGif.gif)
+![Alt Text](project_preview/forumbase.gif)
 
 
 ---
@@ -66,9 +66,25 @@ yarn install
 or 
 npm install
 
-# Create a Firebase Project and paste the Project's Firebase Configuration data at .env.local file, following the .env.example file model 
-/ 
-# Criar um Projeto Firebase e colar os dados de Configuração do Projeto Firebase no arquivo .env.local, seguindo o modelo do arquivo .env.example
+# Firebase Configuration steps necessary to run the project:
+
+## Create a Firebase Project;
+## Paste the Projects configuration data at .env.local file, following the .env.example file model;
+## Enable Authentication using both Email and Google Providers;
+## Inside the project, copy the content inside the database.rules.json file;
+## Enable Realtime Database and go to the tab "Rules";
+## Paste the content and save the changes made; 
+
+/
+
+# Passos para configuração do Firebase necessários para execução do projeto:
+
+## Crie um Projeto Firebase;
+## Cole os dados de configuração do Projeto no arquivo .env.local, seguindo o modelo do arquivo .env.example;
+## Habilite a Autenticação usando os provedores de Email e do Google;
+## Dentro do projeto, copie o conteúdo dentro do arquivo database.rules.json;
+## Habilite o Realtime Database e vá até a aba "Regras";
+## Cole esse conteúdo e salve as alterações feitas;
 
 # Run the project / Executar o projeto
 yarn dev
