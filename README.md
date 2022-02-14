@@ -3,7 +3,7 @@
 
 ---
 
-[Project Live Site](https://forumbase-96f40.web.app/) /
+[Live Project Site](https://forumbase-96f40.web.app/) /
 [Site do Projeto ao vivo](https://forumbase-96f40.web.app/)
 
 ---
