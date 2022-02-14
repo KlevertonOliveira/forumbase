@@ -3,14 +3,24 @@
 
 ---
 
-## :art: Layout web
-![Alt Text](project_preview/forumbase.gif)
-
+[Project Live Site](https://forumbase-96f40.web.app/) /
+[Site do Projeto ao vivo](https://forumbase-96f40.web.app/)
 
 ---
 
-[Project Presentation](https://forumbase-96f40.web.app/) /
-[Apresentação do Projeto](https://forumbase-96f40.web.app/)
+## :art: Layout
+### Mobile
+![Alt Text](project_preview/forumbase-mobile.png)
+
+---
+
+### Desktop
+![Alt Text](project_preview/forumbase-desktop.png)
+
+---
+
+## :movie_camera: Project Presentation / Apresentação do Projeto
+![Alt Text](project_preview/forumbase.gif)
 
 ---
 
@@ -20,7 +30,7 @@ ForumBase is a project that I conceived and developed from scratch as a personal
 
 The project's idea is to provide the community of users with an online environment conducive to the exchange of ideas and knowledge between developers of all levels, using the Q&A format, with all interaction carried out through posts and answers, similar to the scheme used on the Stack Overflow website, from which this application took its inspiration.
 
-The Next.js framework (React) was the most suitable choice for this application as it provides easy management of states and components, in addition to enabling easy integration with the other stacks used.
+Next.js (React Framework) was the most suitable choice for this application as it provides easy management of states and components, in addition to enabling easy integration with the other stacks used.
 
 In addition, the application also made use of Chakra UI library for a faster, concise, accessible and customizable interface development experience, as it allows the creation of a great and adaptable design system.
 
@@ -39,6 +49,28 @@ Além disso, a aplicação fez uso também da biblioteca Chakra UI para uma expe
 Por fim, a plataforma Firebase se apresentou como a ferramenta ideal para construção da parte lógica do projeto, sendo a estrutura responsável pelo fluxo de autenticação, interações com o banco de dados e o serviço de hospedagem para a aplicação (além de servir como inspiração para o nome do projeto!).
 
 ---
+
+## :medal_military: Features
+* Registration of new users through the Sign Up page;
+* Log into the application using both email provider (after Sign Up) or Google Provider;
+* Log Out;
+* Creation of new posts/questions and answers (user must be logged in);
+* Edit and delete posts and answers (available only for it's author);
+* Post search based on title;
+* Dark Mode (user can switch between light and dark mode in main menu); 
+
+---
+
+* Registro de novos usuários através da página de Sign Up (cadastro);
+* Log in (entrar como usuário) na aplicação utilizando provedor de e-mail (após o cadastro) ou através do provedor Google;
+* Log out (sair);
+* Criação de novas postagens/questões e respostas (usuário precisa estar logado);
+* Edição e remoção de postagens e respostas (disponível apenas para o autor);
+* Pesquisa de postagem baseada em título;
+* Tema escuro (usuário pode alternar entre tema claro e tema escuro no menu principal); 
+
+----
+
 
 ## :gear: Technologies Used / Tecnologias utilizadas
 
@@ -69,8 +101,8 @@ npm install
 # Firebase Configuration steps necessary to run the project:
 
 ## Create a Firebase Project;
-## Paste the Projects configuration data at .env.local file, following the .env.example file model;
-## Enable Authentication using both Email and Google Providers;
+## Paste the Projects configuration data at the .env.local file, following the .env.example file model;
+## Enable Authentication using both Email Provider and Google Provider;
 ## Inside the project, copy the content inside the database.rules.json file;
 ## Enable Realtime Database and go to the tab "Rules";
 ## Paste the content and save the changes made; 
