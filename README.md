@@ -24,7 +24,9 @@
 
 ---
 
-## :mag_right: About the project / Sobre o projeto
+# English :uk:
+
+## :mag_right: About the project
 
 ForumBase is a project that I conceived and developed from scratch as a personal challenge in order to put my acquired knowledge into practice and learn new technologies during the process.
 
@@ -37,6 +39,70 @@ In addition, the application also made use of Chakra UI library for a faster, co
 Finally, the Firebase platform presented itself as the ideal tool for building the logical part of the project, being the structure responsible for the authentication flow, database interactions and hosting service for the application (and also being source of inspiration for the project's name!)
 
 ---
+
+## :medal_military: Features
+* Registration of new users through the Sign Up page;
+* Log into the application using both email provider (after Sign Up) or Google Provider;
+* Log Out;
+* Creation of new posts/questions and answers (user must be logged in);
+* Edit and delete posts and answers (available only for it's author);
+* Post search based on title;
+* Dark Mode (user can switch between light and dark mode in main menu); 
+
+----
+
+## :gear: Technologies Used
+
+### Front end
+- HTML5
+- [Next JS](https://nextjs.org/) (React Framework)
+- [Chakra UI](https://chakra-ui.com/) (React Library for creating User Interfaces and Design Systems)
+- [Firebase](https://firebase.google.com/) (Google Platform for creating mobile and web applications)
+- [Typescript](https://www.typescriptlang.org/) (Superset of JavaScript)
+- [Formik + Yup](https://formik.org/) (React Libraries for building and validating forms)
+
+## :file_folder: How to run the project 
+
+Prerequisites: npm / yarn
+
+```bash
+# Clone repository
+git clone git@github.com:KlevertonOliveira/forumbase.git
+
+# Enter the project folder
+cd forumbase
+
+# Install dependencies
+yarn install 
+or 
+npm install
+
+# Firebase Configuration steps necessary to run the project:
+
+## Create a Firebase Project;
+## Paste the Projects configuration data at the .env.local file, following the .env.example file model;
+## Enable Authentication using both Email Provider and Google Provider;
+## Inside the project, copy the content inside the database.rules.json file;
+## Enable Realtime Database and go to the tab "Rules";
+## Paste the content and save the changes made; 
+
+# Run the project
+yarn dev
+or
+npm run dev
+```
+
+## :raising_hand_man: Author
+
+José Kleverton Yvens Oliveira
+
+https://www.linkedin.com/in/kleverton-oliveira/
+
+---
+
+# Português :brazil:
+
+## :mag_right: Sobre o projeto
 
 ForumBase é um projeto que idealizei e desenvolvi do zero como um desafio pessoal com o intuito de colocar em prática meus conhecimentos adquiridos e aprender novas tecnologias durante o processo.
 
@@ -51,16 +117,6 @@ Por fim, a plataforma Firebase se apresentou como a ferramenta ideal para constr
 ---
 
 ## :medal_military: Features
-* Registration of new users through the Sign Up page;
-* Log into the application using both email provider (after Sign Up) or Google Provider;
-* Log Out;
-* Creation of new posts/questions and answers (user must be logged in);
-* Edit and delete posts and answers (available only for it's author);
-* Post search based on title;
-* Dark Mode (user can switch between light and dark mode in main menu); 
-
----
-
 * Registro de novos usuários através da página de Sign Up (cadastro);
 * Log in (entrar como usuário) na aplicação utilizando provedor de e-mail (após o cadastro) ou através do provedor Google;
 * Log out (sair);
@@ -69,45 +125,33 @@ Por fim, a plataforma Firebase se apresentou como a ferramenta ideal para constr
 * Pesquisa de postagem baseada em título;
 * Tema escuro (usuário pode alternar entre tema claro e tema escuro no menu principal); 
 
-----
+---
 
-
-## :gear: Technologies Used / Tecnologias utilizadas
+## :gear: Tecnologias utilizadas
 
 ### Front end
 - HTML5
 - [Next JS](https://nextjs.org/) (React Framework)
-- [Chakra UI](https://chakra-ui.com/) (React Library for creating User Interfaces and Design Systems)
-- [Firebase](https://firebase.google.com/) (Google Platform for creating mobile and web applications)
-- [Typescript](https://www.typescriptlang.org/) (Superset of JavaScript)
-- [Formik + Yup](https://formik.org/) (React Libraries for building and validating forms)
+- [Chakra UI](https://chakra-ui.com/) (Biblioteca React para a criação de interafces de usuário e Design Systems)
+- [Firebase](https://firebase.google.com/) (Plataforma Google para criação de aplicações mobile and web)
+- [Typescript](https://www.typescriptlang.org/) (Superset de JavaScript)
+- [Formik + Yup](https://formik.org/) (Bibliotecas React para criação e validação de formulários)
 
-## :file_folder: How to run the project / Como executar o projeto
+---
 
-Prerequisites / Pré-requisitos: npm / yarn
+Pré-requisitos: npm / yarn
 
 ```bash
-# Clone repository / Clonar repositório
+# Clonar repositório
 git clone git@github.com:KlevertonOliveira/forumbase.git
 
-# Enter the project folder / Entrar na pasta do projeto
+# Entrar na pasta do projeto
 cd forumbase
 
-# Install dependencies / Instalar dependências
+# Instalar dependências
 yarn install 
-or 
+ou 
 npm install
-
-# Firebase Configuration steps necessary to run the project:
-
-## Create a Firebase Project;
-## Paste the Projects configuration data at the .env.local file, following the .env.example file model;
-## Enable Authentication using both Email Provider and Google Provider;
-## Inside the project, copy the content inside the database.rules.json file;
-## Enable Realtime Database and go to the tab "Rules";
-## Paste the content and save the changes made; 
-
-/
 
 # Passos para configuração do Firebase necessários para execução do projeto:
 
@@ -118,14 +162,16 @@ npm install
 ## Habilite o Realtime Database e vá até a aba "Regras";
 ## Cole esse conteúdo e salve as alterações feitas;
 
-# Run the project / Executar o projeto
+# Executar o projeto
 yarn dev
-or
+ou
 npm run dev
 ```
 
-## :raising_hand_man: Author / Autor
+## :raising_hand_man: Autor
 
 José Kleverton Yvens Oliveira
 
 https://www.linkedin.com/in/kleverton-oliveira/
+
+
