@@ -99,7 +99,7 @@ npm run dev
 
 José Kleverton Yvens Oliveira
 
-https://www.linkedin.com/in/kleverton-oliveira/
+https://www.linkedin.com/in/klevertonoliveira/
 
 ---
 ---
@@ -177,6 +177,5 @@ npm run dev
 
 José Kleverton Yvens Oliveira
 
-https://www.linkedin.com/in/kleverton-oliveira/
-
+https://www.linkedin.com/in/klevertonoliveira/
 
