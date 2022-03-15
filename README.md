@@ -21,7 +21,7 @@
 
 ---
 
-## :movie_camera: Project Demonstration / Demonstação do Projeto
+## :movie_camera: Project Demonstration / Demonstração do Projeto
 
 https://user-images.githubusercontent.com/71989630/158437229-246bcc00-679a-47f4-89be-c7170d2f67dc.mp4
 
