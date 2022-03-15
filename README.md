@@ -3,6 +3,8 @@
 
 ---
 
+## :link: Links
+
 [Live Project Site](https://forumbase-96f40.web.app/) /
 [Site do Projeto ao vivo](https://forumbase-96f40.web.app/)
 
@@ -19,12 +21,13 @@
 
 ---
 
-## :movie_camera: Project Presentation / Apresentação do Projeto
-![Alt Text](project_preview/forumbase.gif)
+## :movie_camera: Project Demonstration / Demonstação do Projeto
+
+https://user-images.githubusercontent.com/71989630/158437229-246bcc00-679a-47f4-89be-c7170d2f67dc.mp4
 
 ---
 
-# English :uk:
+# English :uk:/:us:
 
 ## :mag_right: About the project
 
@@ -98,6 +101,8 @@ José Kleverton Yvens Oliveira
 
 https://www.linkedin.com/in/kleverton-oliveira/
 
+---
+---
 ---
 
 # Português :brazil:
