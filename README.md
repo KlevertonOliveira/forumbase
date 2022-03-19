@@ -61,7 +61,7 @@ Finally, the Firebase platform presented itself as the ideal tool for building t
 - [Next JS](https://nextjs.org/) (React Framework)
 - [Chakra UI](https://chakra-ui.com/) (React Library for creating User Interfaces and Design Systems)
 - [Firebase](https://firebase.google.com/) (Google Platform for creating mobile and web applications)
-- [Typescript](https://www.typescriptlang.org/) (Superset of JavaScript)
+- [TypeScript](https://www.typescriptlang.org/) (Superset of JavaScript)
 - [Formik + Yup](https://formik.org/) (React Libraries for building and validating forms)
 
 ## :file_folder: How to run the project 
@@ -139,7 +139,7 @@ Por fim, a plataforma Firebase se apresentou como a ferramenta ideal para constr
 - [Next JS](https://nextjs.org/) (React Framework)
 - [Chakra UI](https://chakra-ui.com/) (Biblioteca React para a criação de interafces de usuário e Design Systems)
 - [Firebase](https://firebase.google.com/) (Plataforma Google para criação de aplicações mobile and web)
-- [Typescript](https://www.typescriptlang.org/) (Superset de JavaScript)
+- [TypeScript](https://www.typescriptlang.org/) (Superset de JavaScript)
 - [Formik + Yup](https://formik.org/) (Bibliotecas React para criação e validação de formulários)
 
 ---
